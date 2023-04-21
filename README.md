@@ -1,10 +1,10 @@
 <p align="center">
-<!-- <br/>
-  <img width="400" src="./assets/some-image.png" alt="The goal is a component to support performant images on the web and automatic image optimization.
+<br/>
+  <img width="300" src="./assets/qwik-image-logo.png" alt="The goal is a component to support performant images on the web and automatic image optimization.
 That will be built as a pluggable component so devs could connect different image loaders to it (like Cloudinary, or builder)">
   <br/>
   <br/>
-</p> -->
+</p>
 
 <h1 align='center'><a href='https://github.com/BuilderIO/qwik'>Qwik</a> Image Component</h1>
 
@@ -39,7 +39,8 @@ pnpm install @qwik-image
 
 ## Usage
 
-### Global Provider 
+### Global Provider
+
 ```
 const imageTransformer$ = $(({ src, width, height }: ImageTransformerProps): string => {
   return `${src}?w=${width}&h=${height}&format=webp`;
@@ -78,7 +79,6 @@ useImageProvider({
 #### `background: 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNUTX59BgAEaQJBWyqr7QAAAABJRU5ErkJggg==")';`
 
 <img width="312" alt="url-data-image" src="https://user-images.githubusercontent.com/35845425/223958138-bdb0f110-460b-4fb3-a114-e7b9d63c12b6.png">
-
 
 #### `background: 'url("/public/placeholder.jpg") no-repeat center / cover';`
 
