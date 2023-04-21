@@ -27,6 +27,12 @@
       "options": {
         "lintFilePatterns": ["packages/@qwik-image/**/*.{ts,tsx,js,jsx}"]
       }
+    },
+    "publish": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "access": "public"
+      }
     }
   },
   "tags": []
