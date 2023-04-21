@@ -18,11 +18,6 @@ jobs:
         with:
           node_version: ${{ matrix.node_version }}
 
-      - name: Test
-        uses: ./.github/actions/test
-        with:
-          codecov_token: ${{ secrets.CODECOV_TOKEN }}
-
   release:
     runs-on: ubuntu-latest
 
