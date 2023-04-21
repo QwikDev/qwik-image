@@ -6,12 +6,12 @@ That will be built as a pluggable component so devs could connect different imag
   <br/>
 </p> -->
 
-<h1 align='center'>Qwik Image Component</h1>
+<h1 align='center'><a href='https://github.com/BuilderIO/qwik'>Qwik</a> Image Component</h1>
 
 <div align='center'>
   <h3>The goal is a component to support performant images on the web and automatic image optimization.
-That will be built as a pluggable component so devs could connect different image loaders to it (like Cloudinary, or builder)</h3>
-  <a href='https://github.com/BuilderIO/qwik'>Qwik</a>
+That will be built as a pluggable component so devs could connect different image loaders to it (like builder.io or Cloudinary)</h3>
+  
   <br><br>
 
   <a href='https://img.shields.io/npm/v/@qwik-image?label=npm%20version'>
@@ -27,10 +27,17 @@ That will be built as a pluggable component so devs could connect different imag
 </div>
 <br>
 
-## I'm testing this component in a real app [here](https://qwik-storefront.vendure.io/) and it's working good. 
-## [pagespeed.dev](https://pagespeed.web.dev/) metrics are 100% as well 🥳 ✅
+## Installation
 
-## Example
+```
+npm install @qwik-image
+or
+yarn install @qwik-image
+or
+pnpm install @qwik-image
+```
+
+## Usage
 
 ### Global Provider 
 ```
