@@ -1,0 +1,8 @@
+# Add files here to ignore them from prettier formatting
+
+**/*.log
+**/.DS_Store
+*.
+dist
+node_modules
+coverage

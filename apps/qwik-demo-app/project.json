@@ -1,0 +1,77 @@
+{
+  "name": "qwik-demo-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "packages/qwik-demo-app/src",
+  "targets": {
+    "build": {
+      "executor": "qwik-nx:build",
+      "options": {
+        "runSequence": [
+          "qwik-demo-app:build.client",
+          "qwik-demo-app:build.ssr"
+        ],
+        "outputPath": "dist/packages/qwik-demo-app"
+      },
+      "configurations": {
+        "preview": {}
+      }
+    },
+    "build.client": {
+      "executor": "@nrwl/vite:build",
+      "options": {
+        "outputPath": "dist/packages/qwik-demo-app",
+        "configFile": "packages/qwik-demo-app/vite.config.ts"
+      }
+    },
+    "build.ssr": {
+      "executor": "@nrwl/vite:build",
+      "defaultConfiguration": "preview",
+      "options": {
+        "outputPath": "dist/packages/qwik-demo-app"
+      },
+      "configurations": {
+        "preview": {
+          "ssr": "src/entry.preview.tsx",
+          "mode": "production"
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nrwl/vite:preview-server",
+      "options": {
+        "buildTarget": "qwik-demo-app:build"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/vite:test",
+      "outputs": ["../../coverage/packages/qwik-demo-app"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/packages/qwik-demo-app"
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/vite:dev-server",
+      "options": {
+        "buildTarget": "qwik-demo-app:build.client",
+        "mode": "ssr"
+      }
+    },
+    "serve.debug": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
+        "cwd": "packages/qwik-demo-app"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/qwik-demo-app/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}

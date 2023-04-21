@@ -1,0 +1,28 @@
+name: Test
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node_version: [20]
+
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.11.0
+        if: github.event_name == 'pull_request'
+        with:
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v3
+      - name: Setup
+        uses: ./.github/actions/setup
+        with:
+          node_version: ${{ matrix.node_version }}
+
+      - name: Test
+        uses: ./.github/actions/test
