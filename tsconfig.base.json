@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@qwik-image": ["packages/@qwik-image/src/index.ts"]
+      "qwik-image": ["packages/qwik-image/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

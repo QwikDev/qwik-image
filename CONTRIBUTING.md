@@ -60,7 +60,7 @@ git checkout -b my-fix-branch main
 
 - From the root of the project run `pnpm install`.
 
-- Then run `nx build @qwik-image`.
+- Then run `nx build qwik-image`.
 
 - Visit the URL printed in the console and you'll have a page opened with the suite of widgets.
 

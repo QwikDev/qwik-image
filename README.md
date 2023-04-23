@@ -14,8 +14,8 @@ That will be built as a pluggable component so devs could connect different imag
   
   <br><br>
 
-  <a href='https://img.shields.io/npm/v/@qwik-image?label=npm%20version'>
-  <img src='https://img.shields.io/npm/v/@qwik-image?label=npm%20version' alt='@qwik-image npm'>
+  <a href='https://img.shields.io/npm/v/qwik-image?label=npm%20version'>
+  <img src='https://img.shields.io/npm/v/qwik-image?label=npm%20version' alt='qwik-image npm'>
   </a>
   <a href='https://opensource.org/licenses/MIT'>
   <img src='https://img.shields.io/badge/License-MIT-green.svg' alt='MIT'>
@@ -30,11 +30,11 @@ That will be built as a pluggable component so devs could connect different imag
 ## Installation
 
 ```
-npm install @qwik-image
+npm install qwik-image
 or
-yarn install @qwik-image
+yarn install qwik-image
 or
-pnpm install @qwik-image
+pnpm install qwik-image
 ```
 
 ## Usage

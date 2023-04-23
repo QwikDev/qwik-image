@@ -1,37 +1,58 @@
 {
-  "name": "@qwik-image",
+  "name": "qwik-image",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/@qwik-image/src",
+  "sourceRoot": "packages/qwik-image/src",
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nrwl/vite:build",
       "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/packages/@qwik-image",
-        "configFile": "packages/@qwik-image/vite.config.ts",
+        "outputPath": "dist/packages/qwik-image",
+        "configFile": "packages/qwik-image/vite.config.ts",
         "mode": "lib"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
       }
     },
     "test": {
       "executor": "@nrwl/vite:test",
-      "outputs": ["../..//coverage/packages/@qwik-image"],
+      "outputs": ["../..//coverage/packages/qwik-image"],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/packages/@qwik-image"
+        "reportsDirectory": "../../coverage/packages/qwik-image"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["packages/@qwik-image/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["packages/qwik-image/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "publish": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
         "access": "public"
+      }
+    },
+    "push-to-github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "${tag}",
+        "notes": "${notes}"
+      }
+    },
+    "version-publish": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "noVerify": true,
+        "push": true,
+        "releaseAs": "patch",
+        "postTargets": ["qwik-image:publish", "qwik-image:push-to-github"]
       }
     }
   },
