@@ -27,7 +27,7 @@ That will be built as a pluggable component so devs could connect different imag
 </div>
 <br>
 
-## Showcase
+## Showcase ( network Slow 3G 🤯 )
 
 ![qwik-image-showcase](./assets/qwik-image-showcase.gif)
 
