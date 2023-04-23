@@ -9,7 +9,7 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./index.qwik.js",
+      "import": "./index.qwik.mjs",
       "require": "./index.qwik.cjs"
     }
   },
