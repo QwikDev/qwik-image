@@ -27,6 +27,10 @@ That will be built as a pluggable component so devs could connect different imag
 </div>
 <br>
 
+## Showcase
+
+![qwik-image-showcase](./assets/qwik-image-showcase.gif)
+
 ## Installation
 
 ```
