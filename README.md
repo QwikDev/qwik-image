@@ -43,7 +43,7 @@ pnpm install qwik-image
 
 ## Usage
 
-### Global Provider
+### Global Provider (required)
 
 ```
 const imageTransformer$ = $(({ src, width, height }: ImageTransformerProps): string => {
@@ -52,7 +52,9 @@ const imageTransformer$ = $(({ src, width, height }: ImageTransformerProps): str
 
 // Provide your default options
 useImageProvider({
-  resolutions: [640], <-- You can set this prop to overwrite default values [3840, 1920, 1280, 960, 640]
+  // you can set this property to overwrite default values [640, 960, 1280, 1920, 3840]
+  resolutions: [640],
+  // you we can define the source from which to load our image
   imageTransformer$,
 });
 ```
@@ -62,6 +64,7 @@ useImageProvider({
 ```
 <Image
   layout="fixed"
+  objectFit="cover"
   width="300"
   height="300"
   src={...}
@@ -70,20 +73,45 @@ useImageProvider({
 />
 ```
 
-## placeholder property values:
+## loading values:
+
+Here is the loading values and behaviors https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/loading
+default: `lazy`
+
+## layout values:
+
+### `constrained`
+If the width of the image is larger than the screen, the screen size is taken, otherwise the actual image size is kept
+
+### `fixed`
+regardless of the screen width, the width of the image is kept
+
+### `fullWidth`
+the width of the image is always equal to the width of the screen
+
+## objectFit values:
+
+Here is the objectFit values and behaviors https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit
+default: `cover`
+
+## placeholder values:
+
+You can define a placeholder to wait for the image to load.
+default: `transparent`
 
 #### `background: 'rgba(37,99,235,1)';`
 
-<img width="312" alt="background" src="https://user-images.githubusercontent.com/35845425/223715512-d097de71-09a8-4e55-aa54-f59850e0a3a3.png">
+<img width="320" alt="placeholder-1" src="./assets/placeholder-1.png">
 
 #### `background: 'linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(166,206,247,1) 0%, rgba(37,99,235,1) 83%);';`
 
-<img width="312" alt="linear-gradient" src="https://user-images.githubusercontent.com/35845425/223715243-a058998c-f2c3-4811-b15d-344d3fd3a891.png">
+<img width="320" alt="placeholder-2" src="./assets/placeholder-2.png">
 
 #### `background: 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNUTX59BgAEaQJBWyqr7QAAAABJRU5ErkJggg==")';`
 
-<img width="312" alt="url-data-image" src="https://user-images.githubusercontent.com/35845425/223958138-bdb0f110-460b-4fb3-a114-e7b9d63c12b6.png">
+<img width="320" alt="placeholder-3" src="./assets/placeholder-3.png">
+
 
 #### `background: 'url("/public/placeholder.jpg") no-repeat center / cover';`
 
-<img width="312" alt="url-jpg" src="https://user-images.githubusercontent.com/35845425/223715374-ea5a41fa-a7df-42e1-af1b-2c0322608397.png">
+<img width="320" alt="placeholder-4" src="./assets/placeholder-4.png">
