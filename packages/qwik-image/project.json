@@ -33,6 +33,24 @@
         "lintFilePatterns": ["packages/qwik-image/**/*.{ts,tsx,js,jsx}"]
       }
     },
+    "version-publish": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "noVerify": true,
+        "push": true,
+        "releaseAs": "patch",
+        "postTargets": ["qwik-image:publish", "qwik-image:push-to-github"]
+      }
+    },
+    "version-publish-minor": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "noVerify": true,
+        "push": true,
+        "releaseAs": "minor",
+        "postTargets": ["qwik-image:publish", "qwik-image:push-to-github"]
+      }
+    },
     "publish": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
@@ -44,15 +62,6 @@
       "options": {
         "tag": "${tag}",
         "notes": "${notes}"
-      }
-    },
-    "version-publish": {
-      "executor": "@jscutlery/semver:version",
-      "options": {
-        "noVerify": true,
-        "push": true,
-        "releaseAs": "patch",
-        "postTargets": ["qwik-image:publish", "qwik-image:push-to-github"]
       }
     }
   },
