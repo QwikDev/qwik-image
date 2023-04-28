@@ -5,7 +5,6 @@ import {
   createContextId,
   useContext,
   useContextProvider,
-  useId,
   useSignal,
   useTask$,
 } from '@builder.io/qwik';
@@ -234,7 +233,6 @@ export const Image = component$<ImageProps>((props) => {
 
   return (
     <img
-      id={useId()}
       decoding="async"
       {...imageAttributes}
       style={style}
