@@ -57,6 +57,8 @@ export const useImageProvider = (state: ImageState) => {
   useContextProvider(ImageContext, state);
 };
 
+export const isValid = (value?: string | number) => value || value === 0;
+
 export const getStyles = ({
   placeholder,
   width,
@@ -68,13 +70,13 @@ export const getStyles = ({
   ImageProps,
   'placeholder' | 'width' | 'height' | 'aspectRatio' | 'objectFit' | 'layout'
 >): Record<string, string | undefined> => {
-  const isValid = (value?: string | number) => value || value === 0;
+  const isRatioValid = isValid(aspectRatio);
 
-  if (height === 'auto' && width === 'auto' && isValid(aspectRatio)) {
+  if (height === 'auto' && width === 'auto' && isRatioValid) {
     console.warn(`To use the aspect ratio either set the width or the height`);
   }
 
-  if (height !== 'auto' && layout !== 'fixed' && isValid(aspectRatio)) {
+  if (height !== 'auto' && layout !== 'fixed' && isRatioValid) {
     console.warn(`To maintain the aspect ratio we set 'height: "auto"'`);
   }
 
@@ -94,14 +96,14 @@ export const getStyles = ({
       return {
         ...baseStyles,
         width: '100%',
-        height: isValid(aspectRatio) ? 'auto' : undefined,
+        height: isRatioValid ? 'auto' : undefined,
         'max-width': isValid(width) ? `${width}px` : undefined,
         'max-height': isValid(height) ? `${height}px` : undefined,
-        'aspect-ratio': isValid(aspectRatio) ? `${aspectRatio}` : undefined,
+        'aspect-ratio': isRatioValid ? `${aspectRatio}` : undefined,
       };
     case 'fullWidth': {
       const heightStyle = {
-        height: isValid(aspectRatio)
+        height: isRatioValid
           ? 'auto'
           : isValid(height)
           ? `${height}px`
@@ -111,7 +113,7 @@ export const getStyles = ({
         ...baseStyles,
         ...heightStyle,
         width: '100%',
-        'aspect-ratio': isValid(aspectRatio) ? `${aspectRatio}` : undefined,
+        'aspect-ratio': isRatioValid ? `${aspectRatio}` : undefined,
       };
     }
   }
