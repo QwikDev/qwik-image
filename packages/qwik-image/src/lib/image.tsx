@@ -233,10 +233,12 @@ export const Image = component$<ImageProps>((props) => {
     });
   });
 
+  const imageAttributesWithoutChildren = { ...imageAttributes, children: undefined };
+
   return (
     <img
       decoding="async"
-      {...imageAttributes}
+      {...imageAttributesWithoutChildren}
       style={style}
       width={['fullWidth', 'constrained'].includes(layout) ? undefined : width}
       height={
