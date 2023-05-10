@@ -2,11 +2,11 @@ lockfileVersion: '6.0'
 
 devDependencies:
   '@builder.io/qwik':
-    specifier: ~0.103.0
-    version: 0.103.0(undici@5.22.0)
+    specifier: ~1.1.0
+    version: 1.1.0(undici@5.22.0)
   '@builder.io/qwik-city':
-    specifier: ~0.103.0
-    version: 0.103.0(@builder.io/qwik@0.103.0)
+    specifier: ~1.1.0
+    version: 1.1.0
   '@commitlint/cli':
     specifier: ^17.6.1
     version: 17.6.1
@@ -68,8 +68,8 @@ devDependencies:
     specifier: ^2.13.2
     version: 2.13.2(eslint@8.38.0)
   eslint-plugin-qwik:
-    specifier: ~0.103.0
-    version: 0.103.0(eslint@8.38.0)
+    specifier: ~1.1.0
+    version: 1.1.0(eslint@8.38.0)
   husky:
     specifier: ^8.0.3
     version: 8.0.3
@@ -1360,15 +1360,12 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@builder.io/qwik-city@0.103.0(@builder.io/qwik@0.103.0):
-    resolution: {integrity: sha512-lryB9UrUR+/uOdYqXBIpBmInbK+rDRTzkRdfterNgZlBKR+enWnL4C/C50p4w1zjtl3RRx64hedf6dyn0setmg==}
+  /@builder.io/qwik-city@1.1.0:
+    resolution: {integrity: sha512-1j7ofLpqJxVo1Ao+NsVUdE6IE1U2qLOGhlhzxtnZCmZsK5Oll/2rGyfOgkxxTYk0xlDay8SHkJGpF+pAdDByRg==}
     engines: {node: '>=16.8.0 <18.0.0 || >=18.11'}
-    peerDependencies:
-      '@builder.io/qwik': '>=0.22.0'
     dependencies:
-      '@builder.io/qwik': 0.103.0(undici@5.22.0)
       '@mdx-js/mdx': 2.3.0
-      '@types/mdx': 2.0.4
+      '@types/mdx': 2.0.5
       source-map: 0.7.4
       vfile: 5.3.7
       zod: 3.21.4
@@ -1376,8 +1373,8 @@ packages:
       - supports-color
     dev: true
 
-  /@builder.io/qwik@0.103.0(undici@5.22.0):
-    resolution: {integrity: sha512-pBNbOJZpODp9yMCyGnVxWwcNgolH4bx8/AeLcWN7jGhjcrCcQpH8WEV6tjXCGUH/JfSGYjywI4FdYsMRam8wdg==}
+  /@builder.io/qwik@1.1.0(undici@5.22.0):
+    resolution: {integrity: sha512-A8PlZi8iQcBLYHmpgRClhLKNM35RVn4wL0Ek6ETRKhH+Oh6iRgN0YcHCQO2APmlc1ajAE4tRfFRH2lroi3nREQ==}
     engines: {node: '>=16.8.0 <18.0.0 || >=18.11'}
     hasBin: true
     peerDependencies:
@@ -1938,7 +1935,7 @@ packages:
     resolution: {integrity: sha512-jLuwRlz8DQfQNiUCJR50Y09CGPq3fLtmtUQfVrj79E0JWu3dvsVcxVIcfhR5h0iXu+/z++zDrYeiJqifRynJkA==}
     dependencies:
       '@types/estree-jsx': 1.0.0
-      '@types/mdx': 2.0.4
+      '@types/mdx': 2.0.5
       estree-util-build-jsx: 2.2.2
       estree-util-is-identifier-name: 2.1.0
       estree-util-to-js: 1.2.0
@@ -2482,8 +2479,8 @@ packages:
       '@types/unist': 2.0.6
     dev: true
 
-  /@types/mdx@2.0.4:
-    resolution: {integrity: sha512-qCYrNdpKwN6YO6FVnx+ulfqifKlE3lQGsNhvDaW9Oxzyob/cRLBJWow8GHBBD4NxQ7BVvtsATgLsX0vZAWmtrg==}
+  /@types/mdx@2.0.5:
+    resolution: {integrity: sha512-76CqzuD6Q7LC+AtbPqrvD9AqsN0k8bsYo2bM2J8pmNldP1aIPAbzUQ7QbobyXL4eLr1wK5x8FZFe8eF/ubRuBg==}
     dev: true
 
   /@types/minimist@1.2.2:
@@ -4187,8 +4184,8 @@ packages:
       globals: 11.12.0
     dev: true
 
-  /eslint-plugin-qwik@0.103.0(eslint@8.38.0):
-    resolution: {integrity: sha512-mEZ5qfNcpnnufWwmGarIqvopgZlNTdaMF1RQbLLwtW3czx7UEEqbWHgxFwcCWv/xLUg7Gn8WxduM0BmTdbSRew==}
+  /eslint-plugin-qwik@1.1.0(eslint@8.38.0):
+    resolution: {integrity: sha512-LN7prCRThRkWr1l5SMHbebwQM8N2VhW52ArzfO7bSpSPR5WQHHqhPuwBMRM4gJJCbOArylr5tGB3/J6fLS7uPA==}
     engines: {node: '>=16'}
     peerDependencies:
       eslint: '>= 8'
