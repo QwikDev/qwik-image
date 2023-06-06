@@ -15,7 +15,6 @@ type ImageAttributes = QwikIntrinsicElements['img'];
 
 /**
  * @alpha
- * 
  */
 export type ImageState = {
   resolutions?: number[];

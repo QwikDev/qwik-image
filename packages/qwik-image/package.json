@@ -7,6 +7,15 @@
   "module": "./index.qwik.mjs",
   "types": "./qwik-image/src/index.d.ts",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qwikifiers/qwik-image"
+  },
+  "author": "gioboa",
+  "bugs": {
+    "url": "https://github.com/qwikifiers/qwik-image/issues"
+  },
+  "homepage": "https://github.com/qwikifiers/qwik-image#readme",
   "exports": {
     ".": {
       "import": "./index.qwik.mjs",
@@ -14,5 +23,9 @@
     }
   },
   "dependencies": {},
-  "peerDependencies": {}
+  "peerDependencies": {},
+  "keywords": [
+    "qwik-image",
+    "image optimization"
+  ]
 }

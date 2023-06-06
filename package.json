@@ -4,15 +4,6 @@
   "license": "MIT",
   "scripts": {},
   "private": false,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/qwikifiers/qwik-image"
-  },
-  "author": "gioboa",
-  "bugs": {
-    "url": "https://github.com/qwikifiers/qwik-image/issues"
-  },
-  "homepage": "https://github.com/qwikifiers/qwik-image#readme",
   "devDependencies": {
     "@builder.io/qwik": "~1.1.0",
     "@builder.io/qwik-city": "~1.1.0",
@@ -58,8 +49,6 @@
     }
   },
   "keywords": [
-    "qwik",
-    "qwik-image",
-    "image optimization"
+    "qwik"
   ]
 }
