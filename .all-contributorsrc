@@ -9,20 +9,28 @@
   "imageSize": 100,
   "commit": true,
   "commitConvention": "angular",
-  "contributors": [
+  "contributors": [ 
+    {
+      "login": "gioboa",
+      "name": "Giorgio Boa",
+      "avatar_url": "https://avatars.githubusercontent.com/u/35845425?v=4",
+      "profile": "https://it.linkedin.com/in/giorgio-boa",
+      "contributions": [
+        "code",
+        "test",
+        "doc",
+        "maintenance",
+        "review",
+        "ideas"
+      ]
+    },
     {
       "login": "shairez",
       "name": "Shai Reznik",
       "avatar_url": "https://avatars1.githubusercontent.com/u/1430726?v=4",
       "profile": "https://hirez.io/?utm_source=github&utm_medium=link&utm_campaign=qwik-image",
       "contributions": [
-        "code",
-        "test",
-        "infra",
-        "doc",
-        "maintenance",
-        "review",
-        "ideas"
+        "infra"
       ]
     }
   ],
