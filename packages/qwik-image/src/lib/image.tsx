@@ -3,15 +3,14 @@ import {
   QwikIntrinsicElements,
   component$,
   createContextId,
+  useComputed$,
   useContext,
   useContextProvider,
-  useSignal,
-  useTask$,
 } from '@builder.io/qwik';
 
 export const DEFAULT_RESOLUTIONS = [3840, 1920, 1280, 960, 640];
 
-type ImageAttributes = QwikIntrinsicElements['img'];
+type ImageAttributes = Omit<QwikIntrinsicElements['img'], 'ref'>;
 
 /**
  * @alpha
@@ -216,13 +215,16 @@ export const Image = component$<ImageProps>((props) => {
     ...state,
     ...props,
   };
-  const style = { ...props.style, ...getStyles(props) };
-  const sizes = getSizes(props);
-  const srcSetSignal = useSignal('');
+  const imageAttributesWithoutChildren = {
+    ...imageAttributes,
+    children: undefined,
+  };
 
-  const { src, width, height, aspectRatio, layout } = props;
-  useTask$(async () => {
-    srcSetSignal.value = await getSrcSet({
+  const style = useComputed$(() => ({ ...props.style, ...getStyles(props) }));
+  const sizes = useComputed$(() => getSizes(props));
+  const srcSet = useComputed$(() => {
+    const { src, width, height, aspectRatio, layout } = props;
+    return getSrcSet({
       src,
       width,
       height,
@@ -232,20 +234,26 @@ export const Image = component$<ImageProps>((props) => {
       imageTransformer$,
     });
   });
-
-  const imageAttributesWithoutChildren = { ...imageAttributes, children: undefined };
+  const width = useComputed$(() =>
+    ['fullWidth', 'constrained'].includes(props.layout)
+      ? undefined
+      : props.width
+  );
+  const height = useComputed$(() =>
+    ['fullWidth', 'constrained'].includes(props.layout)
+      ? undefined
+      : props.height
+  );
 
   return (
     <img
       decoding="async"
       {...imageAttributesWithoutChildren}
-      style={style}
-      width={['fullWidth', 'constrained'].includes(layout) ? undefined : width}
-      height={
-        ['fullWidth', 'constrained'].includes(layout) ? undefined : height
-      }
-      srcSet={srcSetSignal.value}
-      sizes={sizes}
+      style={style.value}
+      width={width.value}
+      height={height.value}
+      srcSet={srcSet.value}
+      sizes={sizes.value}
     />
   );
 });
