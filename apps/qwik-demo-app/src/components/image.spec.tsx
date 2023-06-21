@@ -1,8 +1,13 @@
 import { QwikCityMockProvider } from '@builder.io/qwik-city';
 import { createDOM } from '@builder.io/qwik/testing';
 import { expect, test } from 'vitest';
-import { Image, ImageTransformerProps, useImageProvider } from 'qwik-image';
-import { $, Slot, component$ } from '@builder.io/qwik';
+import {
+  Image,
+  ImageProps,
+  ImageTransformerProps,
+  useImageProvider,
+} from 'qwik-image';
+import { $, Slot, component$, useSignal } from '@builder.io/qwik';
 import { providers, selectedProvider } from '../providers';
 
 const TransformerProvider = component$(() => {
@@ -170,6 +175,108 @@ test(`should render a fullWidth rectangular img`, async () => {
         height: 200,
         width: 960,
         breakpoint: 960,
+      },
+    ],
+  });
+});
+
+const DynamicImage = component$(
+  (props: { before: ImageProps; after: ImageProps }) => {
+    const width = useSignal(props.before.width);
+    const height = useSignal(props.before.height);
+    const layout = useSignal(props.before.layout);
+    const src = useSignal(props.before.src);
+
+    return (
+      <>
+        <Image
+          width={width.value}
+          height={height.value}
+          layout={layout.value}
+          src={src.value}
+        />
+        <button
+          onClick$={() => {
+            width.value = props.after.width;
+            height.value = props.after.height;
+            layout.value = props.after.layout;
+            src.value = props.after.src;
+          }}
+        ></button>
+      </>
+    );
+  }
+);
+
+test(`should update image props`, async () => {
+  const { screen, render, userEvent } = await createDOM();
+  await render(
+    <QwikCityMockProvider>
+      <TransformerProvider>
+        <DynamicImage
+          before={{
+            width: 400,
+            height: 400,
+            layout: 'constrained',
+            src: SRC,
+          }}
+          after={{
+            width: 300,
+            height: 200,
+            layout: 'fullWidth',
+            src: SRC + '&after',
+          }}
+        />
+      </TransformerProvider>
+    </QwikCityMockProvider>
+  );
+
+  validateImg(screen.querySelector('img'), {
+    src: SRC,
+    layout: 'constrained',
+    width: 400,
+    height: 400,
+    srcSizes: [
+      {
+        height: 400,
+        width: 400,
+        breakpoint: 400,
+      },
+      {
+        height: 400,
+        width: 640,
+        breakpoint: 640,
+      },
+      {
+        height: 400,
+        width: 800,
+        breakpoint: 800,
+      },
+    ],
+  });
+
+  await userEvent('button', 'click');
+
+  validateImg(screen.querySelector('img'), {
+    src: SRC,
+    layout: 'constrained',
+    width: 400,
+    height: 400,
+    srcSizes: [
+      {
+        height: 400,
+        width: 400,
+        breakpoint: 400,
+      },
+      {
+        height: 400,
+        width: 640,
+        breakpoint: 640,
+      },
+      {
+        height: 400,
+        width: 800,
+        breakpoint: 800,
       },
     ],
   });
