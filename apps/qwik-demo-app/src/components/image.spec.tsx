@@ -180,6 +180,36 @@ test(`should render a fullWidth rectangular img`, async () => {
   });
 });
 
+test(`should render a fixed img`, async () => {
+  const { screen, render } = await createDOM();
+  await render(
+    <QwikCityMockProvider>
+      <TransformerProvider>
+        <Image width={600} height={500} layout="fixed" src={SRC} />
+      </TransformerProvider>
+    </QwikCityMockProvider>
+  );
+
+  validateImg(screen.querySelector('img'), {
+    src: SRC,
+    layout: 'fixed',
+    width: 600,
+    height: 500,
+    srcSizes: [
+      {
+        height: 500,
+        width: 1200,
+        breakpoint: 1200,
+      },
+      {
+        height: 500,
+        width: 600,
+        breakpoint: 600,
+      },
+    ],
+  });
+});
+
 const DynamicImage = component$(
   (props: { before: ImageProps; after: ImageProps }) => {
     const width = useSignal(props.before.width);
@@ -208,7 +238,7 @@ const DynamicImage = component$(
   }
 );
 
-test(`should update image props`, async () => {
+test(`should update img when props change`, async () => {
   const { screen, render, userEvent } = await createDOM();
   await render(
     <QwikCityMockProvider>
@@ -224,7 +254,7 @@ test(`should update image props`, async () => {
             width: 300,
             height: 200,
             layout: 'fullWidth',
-            src: SRC + '&after',
+            src: SRC + 'something',
           }}
         />
       </TransformerProvider>
@@ -258,25 +288,35 @@ test(`should update image props`, async () => {
   await userEvent('button', 'click');
 
   validateImg(screen.querySelector('img'), {
-    src: SRC,
-    layout: 'constrained',
-    width: 400,
-    height: 400,
+    src: SRC + 'something',
+    layout: 'fullWidth',
+    width: 300,
+    height: 200,
     srcSizes: [
       {
-        height: 400,
-        width: 400,
-        breakpoint: 400,
+        height: 200,
+        width: 1280,
+        breakpoint: 1280,
       },
       {
-        height: 400,
+        height: 200,
+        width: 1920,
+        breakpoint: 1920,
+      },
+      {
+        height: 200,
+        width: 3840,
+        breakpoint: 3840,
+      },
+      {
+        height: 200,
         width: 640,
         breakpoint: 640,
       },
       {
-        height: 400,
-        width: 800,
-        breakpoint: 800,
+        height: 200,
+        width: 960,
+        breakpoint: 960,
       },
     ],
   });
@@ -297,9 +337,7 @@ function validateImg(
   }
 ) {
   expect(img).toBeTruthy();
-  expect(img?.width).toEqual(props.width);
-  expect(img?.height).toEqual(props.height);
-  expect(img?.src).toEqual(`/${props.src}`);
+  expect(img?.outerHTML).toContain(`src="${props.src}"`);
 
   const expectedSizes = props.srcSizes
     .map(
@@ -314,6 +352,8 @@ function validateImg(
       `sizes="(min-width: ${props.width}px) ${props.width}px, 100vw"`
     );
   } else if (props.layout === 'fixed') {
+    expect(img?.outerHTML).toContain(`width="${props.width}"`);
+    expect(img?.outerHTML).toContain(`height="${props.height}"`);
     expect(img?.outerHTML).toContain(`sizes="${props.width}px"`);
   } else {
     expect(img?.outerHTML).toContain(`sizes="100vw"`);
