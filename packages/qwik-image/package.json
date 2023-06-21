@@ -1,6 +1,6 @@
 {
   "name": "qwik-image",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "The goal is a component to support performant images on the web and automatic image optimization. That will be built as a pluggable component so devs could connect different image loaders to it (like Cloudinary, or builder)",
   "main": "./index.qwik.cjs",
   "qwik": "./index.qwik.mjs",

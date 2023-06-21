@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.7](https://github.com/qwikifiers/qwik-image/compare/qwik-image-0.0.6...qwik-image-0.0.7) (2023-06-21)
+
+
+### Bug Fixes
+
+* image reactivity ([e5e0025](https://github.com/qwikifiers/qwik-image/commit/e5e002545727dd87e894d349b34158a629dc8f58))
+
+
+
 ## [0.0.6](https://github.com/qwikifiers/qwik-image/compare/qwik-image-0.0.5...qwik-image-0.0.6) (2023-06-06)
 
 
