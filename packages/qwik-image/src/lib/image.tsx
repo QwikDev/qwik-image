@@ -1,6 +1,7 @@
 import {
   QRL,
   QwikIntrinsicElements,
+  Signal,
   component$,
   createContextId,
   useComputed$,
@@ -10,7 +11,7 @@ import {
 
 export const DEFAULT_RESOLUTIONS = [3840, 1920, 1280, 960, 640];
 
-type ImageAttributes = Omit<QwikIntrinsicElements['img'], 'ref'>;
+type ImageAttributes = QwikIntrinsicElements['img'];
 
 /**
  * @alpha
@@ -220,7 +221,10 @@ export const Image = component$<ImageProps>((props) => {
     children: undefined,
   };
 
-  const style = useComputed$(() => ({ ...props.style, ...getStyles(props) }));
+  const style = useComputed$(() => ({
+    ...props.style,
+    ...getStyles(props),
+  }));
   const sizes = useComputed$(() => getSizes(props));
   const srcSet = useComputed$(() => {
     const { src, width, height, aspectRatio, layout } = props;
