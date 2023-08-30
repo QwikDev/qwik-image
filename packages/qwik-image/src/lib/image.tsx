@@ -160,7 +160,7 @@ export const getSrcSet = async ({
     let transformedHeight =
       typeof height === 'string' ? parseInt(height, 10) : height;
     if (height && aspectRatio) {
-      transformedHeight = Math.round(breakpoint * aspectRatio);
+      transformedHeight = Math.round(breakpoint / aspectRatio);
     }
 
     if (!imageTransformer$) {
