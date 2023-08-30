@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.8](https://github.com/qwikifiers/qwik-image/compare/qwik-image-0.0.7...qwik-image-0.0.8) (2023-08-30)
+
+
+### Bug Fixes
+
+* transformedHeight calc ([#5](https://github.com/qwikifiers/qwik-image/issues/5)) ([0f6f424](https://github.com/qwikifiers/qwik-image/commit/0f6f424e2eb73c20945bcd0a1a24a4474806c45f))
+
+
+
 ## [0.0.7](https://github.com/qwikifiers/qwik-image/compare/qwik-image-0.0.6...qwik-image-0.0.7) (2023-06-21)
 
 
