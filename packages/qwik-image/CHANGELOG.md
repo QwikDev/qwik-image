@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.9](https://github.com/qwikifiers/qwik-image/compare/qwik-image-0.0.8...qwik-image-0.0.9) (2024-04-23)
+
+
+### Bug Fixes
+
+* add type import in package.json ([#9](https://github.com/qwikifiers/qwik-image/issues/9)) ([6c3ea3f](https://github.com/qwikifiers/qwik-image/commit/6c3ea3f07be47c7fd21b9091ca3672b477f98df6))
+
+
+### Features
+
+* add fetchpriority property ([#10](https://github.com/qwikifiers/qwik-image/issues/10)) ([172a390](https://github.com/qwikifiers/qwik-image/commit/172a390a238c79f80115b660b08cca8d2b484b30))
+
+
+
 ## [0.0.8](https://github.com/qwikifiers/qwik-image/compare/qwik-image-0.0.7...qwik-image-0.0.8) (2023-08-30)
 
 
