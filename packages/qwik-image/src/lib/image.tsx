@@ -46,6 +46,7 @@ export interface ImageProps extends ImageAttributes {
     | 'scale-down'
     | 'inherit'
     | 'initial';
+  fetchpriority?:'low' | 'high'
 }
 
 export const ImageContext = createContextId<ImageState>('ImageContext');
