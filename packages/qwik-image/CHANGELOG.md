@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.10](https://github.com/qwikifiers/qwik-image/compare/qwik-image-0.0.9...qwik-image-0.0.10) (2024-04-23)
+
+
+### Features
+
+* copy README.md inside qwik-image folder ([654968d](https://github.com/qwikifiers/qwik-image/commit/654968daf875fae94b3170638f3f88269e9f4d6e))
+
+
+
 ## [0.0.9](https://github.com/qwikifiers/qwik-image/compare/qwik-image-0.0.8...qwik-image-0.0.9) (2024-04-23)
 
 
