@@ -1,7 +1,6 @@
 import {
   QRL,
   QwikIntrinsicElements,
-  Signal,
   component$,
   createContextId,
   useComputed$,
@@ -46,6 +45,7 @@ export interface ImageProps extends ImageAttributes {
     | 'scale-down'
     | 'inherit'
     | 'initial';
+  fetchpriority?: 'low' | 'high' | 'auto';
 }
 
 export const ImageContext = createContextId<ImageState>('ImageContext');
