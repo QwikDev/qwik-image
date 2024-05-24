@@ -19,8 +19,8 @@ runs:
     - name: Setup git user
       shell: bash
       run: |
-        git config --global user.name '@qwikifiers'
-        git config --global user.email 'qwikifiers@users.noreply.github.com'
+        git config --global user.name '@qwikdev'
+        git config --global user.email 'qwikdev@users.noreply.github.com'
 
     - name: Setup pnpm
       uses: pnpm/action-setup@v2.2.4

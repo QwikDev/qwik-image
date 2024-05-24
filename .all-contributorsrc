@@ -1,6 +1,6 @@
 {
   "projectName": "qwik-image",
-  "projectOwner": "qwikifiers",
+  "projectOwner": "qwikdev",
   "repoType": "github",
   "repoHost": "https://github.com",
   "files": [
@@ -9,7 +9,7 @@
   "imageSize": 100,
   "commit": true,
   "commitConvention": "angular",
-  "contributors": [ 
+  "contributors": [
     {
       "login": "gioboa",
       "name": "Giorgio Boa",

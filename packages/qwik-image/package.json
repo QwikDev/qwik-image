@@ -9,13 +9,13 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/qwikifiers/qwik-image"
+    "url": "https://github.com/qwikdev/qwik-image"
   },
   "author": "gioboa",
   "bugs": {
-    "url": "https://github.com/qwikifiers/qwik-image/issues"
+    "url": "https://github.com/qwikdev/qwik-image/issues"
   },
-  "homepage": "https://github.com/qwikifiers/qwik-image#readme",
+  "homepage": "https://github.com/qwikdev/qwik-image#readme",
   "exports": {
     ".": {
       "types": "./index.d.ts",

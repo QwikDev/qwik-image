@@ -11,7 +11,7 @@ Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md) to help us keep
 
 ## Found a bug? Want a feature? - Submit an Issue
 
-[Choose an issue template](https://github.com/qwikifiers/qwik-image/issues/new/choose) to file a bug report / feature request.
+[Choose an issue template](https://github.com/qwikdev/qwik-image/issues/new/choose) to file a bug report / feature request.
 
 <br/>
 
@@ -19,13 +19,13 @@ Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md) to help us keep
 
 <br/>
 
-### ▶ 1. First - [Search this repo for existing PRs](https://github.com/qwikifiers/qwik-image/pulls) !
+### ▶ 1. First - [Search this repo for existing PRs](https://github.com/qwikdev/qwik-image/pulls) !
 
 Try to find an open or closed PR that relates to the change you want to introduce.
 
 <br/>
 
-### ▶ 2. **Before you start coding - [find](https://github.com/qwikifiers/qwik-image/issues) / [create an issue](https://github.com/qwikifiers/qwik-image/issues/new/choose)**
+### ▶ 2. **Before you start coding - [find](https://github.com/qwikdev/qwik-image/issues) / [create an issue](https://github.com/qwikdev/qwik-image/issues/new/choose)**
 
 **Make sure there's an issue** describing the problem you're fixing, or documents the design for the feature you'd like to add.
 Discussing the design up front helps to ensure that we're ready to accept your work.
@@ -64,8 +64,6 @@ git checkout -b my-fix-branch main
 
 - Visit the URL printed in the console and you'll have a page opened with the suite of widgets.
 
-
-
 ### ▶ 5. Make sure you add / modify tests
 
 Run `pnpm run test` to make sure there aren't any errors
@@ -97,7 +95,7 @@ git push origin my-fix-branch
 
 ### ▶ 8. Create a PR
 
-In GitHub, create a pull request for `qwikifiers/qwik-image:main`.
+In GitHub, create a pull request for `qwikdev/qwik-image:main`.
 
 Make sure you check the following checkbox "Allow edits from maintainers" -
 
