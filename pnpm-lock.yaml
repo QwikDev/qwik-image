@@ -13,7 +13,7 @@ importers:
         version: 1.5.5(@types/node@18.15.13)(undici@5.22.0)
       '@builder.io/qwik-city':
         specifier: 1.5.5
-        version: 1.5.5(@types/node@18.15.13)(rollup@3.20.7)
+        version: 1.5.5(@types/node@18.15.13)(rollup@4.18.0)
       '@commitlint/cli':
         specifier: ^17.6.1
         version: 17.6.1
@@ -109,7 +109,7 @@ importers:
         version: 4.3.1(@types/node@18.15.13)
       vite-plugin-dts:
         specifier: ~2.3.0
-        version: 2.3.0(@types/node@18.15.13)(rollup@3.20.7)(vite@4.3.1(@types/node@18.15.13))
+        version: 2.3.0(@types/node@18.15.13)(rollup@4.18.0)(vite@4.3.1(@types/node@18.15.13))
       vite-plugin-eslint:
         specifier: ^1.8.1
         version: 1.8.1(eslint@8.38.0)(vite@4.3.1(@types/node@18.15.13))
@@ -6008,7 +6008,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
 
-  '@builder.io/qwik-city@1.5.5(@types/node@18.15.13)(rollup@3.20.7)':
+  '@builder.io/qwik-city@1.5.5(@types/node@18.15.13)(rollup@4.18.0)':
     dependencies:
       '@mdx-js/mdx': 3.0.1
       '@types/mdx': 2.0.13
@@ -6017,7 +6017,7 @@ snapshots:
       undici: 5.22.0
       vfile: 6.0.1
       vite: 5.2.11(@types/node@18.15.13)
-      vite-imagetools: 6.2.9(rollup@3.20.7)
+      vite-imagetools: 6.2.9(rollup@4.18.0)
       zod: 3.23.8
     transitivePeerDependencies:
       - '@types/node'
@@ -6776,21 +6776,21 @@ snapshots:
       estree-walker: 2.0.2
       picomatch: 2.3.1
 
-  '@rollup/pluginutils@5.0.2(rollup@3.20.7)':
+  '@rollup/pluginutils@5.0.2(rollup@4.18.0)':
     dependencies:
       '@types/estree': 1.0.1
       estree-walker: 2.0.2
       picomatch: 2.3.1
     optionalDependencies:
-      rollup: 3.20.7
+      rollup: 4.18.0
 
-  '@rollup/pluginutils@5.1.0(rollup@3.20.7)':
+  '@rollup/pluginutils@5.1.0(rollup@4.18.0)':
     dependencies:
       '@types/estree': 1.0.1
       estree-walker: 2.0.2
       picomatch: 2.3.1
     optionalDependencies:
-      rollup: 3.20.7
+      rollup: 4.18.0
 
   '@rollup/rollup-android-arm-eabi@4.18.0':
     optional: true
@@ -11020,9 +11020,9 @@ snapshots:
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
 
-  vite-imagetools@6.2.9(rollup@3.20.7):
+  vite-imagetools@6.2.9(rollup@4.18.0):
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@3.20.7)
+      '@rollup/pluginutils': 5.1.0(rollup@4.18.0)
       imagetools-core: 6.0.4
     transitivePeerDependencies:
       - rollup
@@ -11044,11 +11044,11 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-dts@2.3.0(@types/node@18.15.13)(rollup@3.20.7)(vite@4.3.1(@types/node@18.15.13)):
+  vite-plugin-dts@2.3.0(@types/node@18.15.13)(rollup@4.18.0)(vite@4.3.1(@types/node@18.15.13)):
     dependencies:
       '@babel/parser': 7.21.4
       '@microsoft/api-extractor': 7.34.4(@types/node@18.15.13)
-      '@rollup/pluginutils': 5.0.2(rollup@3.20.7)
+      '@rollup/pluginutils': 5.0.2(rollup@4.18.0)
       '@rushstack/node-core-library': 3.55.2(@types/node@18.15.13)
       debug: 4.3.4(supports-color@8.1.1)
       fast-glob: 3.2.12
