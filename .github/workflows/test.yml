@@ -18,7 +18,7 @@ jobs:
         if: github.event_name == 'pull_request'
         with:
           access_token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup
         uses: ./.github/actions/setup
         with:
