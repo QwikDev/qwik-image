@@ -1,6 +1,6 @@
 <p align="center">
 <br/>
-  <img width="300" src="./packages/qwik-image/assets/qwik-image-logo.png" alt="The goal is a component to support performant images on the web and automatic image optimization.
+  <img width="300" src="./assets/qwik-image-logo.png" alt="The goal is a component to support performant images on the web and automatic image optimization.
 That will be built as a pluggable component so devs could connect different image loaders to it (like Cloudinary, or builder)">
   <br/>
   <br/>
@@ -29,7 +29,7 @@ That will be built as a pluggable component so devs could connect different imag
 
 ## Showcase ( network Slow 3G 🤯 )
 
-![qwik-image-showcase](./packages/qwik-image/assets/qwik-image-showcase.gif)
+![qwik-image-showcase](./assets/qwik-image-showcase.gif)
 
 ## Installation
 
@@ -104,16 +104,16 @@ default: `transparent`
 
 #### `background: 'rgba(37,99,235,1)';`
 
-<img width="320" alt="placeholder-1" src="./packages/qwik-image/assets/placeholder-1.png">
+<img width="320" alt="placeholder-1" src="./assets/placeholder-1.png">
 
 #### `background: 'linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(166,206,247,1) 0%, rgba(37,99,235,1) 83%);';`
 
-<img width="320" alt="placeholder-2" src="./packages/qwik-image/assets/placeholder-2.png">
+<img width="320" alt="placeholder-2" src="./assets/placeholder-2.png">
 
 #### `background: 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNUTX59BgAEaQJBWyqr7QAAAABJRU5ErkJggg==")';`
 
-<img width="320" alt="placeholder-3" src="./packages/qwik-image/assets/placeholder-3.png">
+<img width="320" alt="placeholder-3" src="./assets/placeholder-3.png">
 
 #### `background: 'url("/public/placeholder.jpg") no-repeat center / cover';`
 
-<img width="320" alt="placeholder-4" src="./packages/qwik-image/assets/placeholder-4.png">
+<img width="320" alt="placeholder-4" src="./assets/placeholder-4.png">

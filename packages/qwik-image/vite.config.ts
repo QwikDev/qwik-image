@@ -23,7 +23,10 @@ export default defineConfig({
       skipDiagnostics: true,
     }),
     viteStaticCopy({
-      targets: [{ src: './README.md', dest: './' }],
+      targets: [
+        { src: '../../README.md', dest: './' },
+        { src: '../../assets/*', dest: './assets/' },
+      ],
     }),
   ],
   server: {
