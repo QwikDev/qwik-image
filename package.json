@@ -5,6 +5,12 @@
   "scripts": {},
   "private": false,
   "type": "module",
+  "engines": {
+    "node": ">=20.11.1",
+    "npm": "please-use-pnpm",
+    "yarn": "please-use-pnpm",
+    "pnpm": ">=9.0.5"
+  },
   "devDependencies": {
     "@builder.io/qwik": "1.5.5",
     "@builder.io/qwik-city": "1.5.5",
