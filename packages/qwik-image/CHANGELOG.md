@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.13](https://github.com/QwikDev/qwik-image/compare/qwik-image-0.0.12...qwik-image-0.0.13) (2024-05-24)
+
+
+
 ## [0.0.12](https://github.com/QwikDev/qwik-image/compare/qwik-image-0.0.11...qwik-image-0.0.12) (2024-05-24)
 
 
