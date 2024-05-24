@@ -2,6 +2,16 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.11](https://github.com/QwikDev/qwik-image/compare/qwik-image-0.0.10...qwik-image-0.0.11) (2024-05-24)
+
+
+### Features
+
+* add viteStaticCopy ([b1abc71](https://github.com/QwikDev/qwik-image/commit/b1abc71f2937858800c1c45a34501e5c1437fab5))
+* change eslint config ([585347b](https://github.com/QwikDev/qwik-image/commit/585347b79935e1924cc4ab2fb958f07adcc2a086))
+
+
+
 ## [0.0.10](https://github.com/qwikdev/qwik-image/compare/qwik-image-0.0.9...qwik-image-0.0.10) (2024-04-23)
 
 ### Features
