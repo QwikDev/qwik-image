@@ -72,11 +72,11 @@ export const getStyles = ({
 >): Record<string, string | undefined> => {
   const isRatioValid = isValid(aspectRatio);
 
-  if (height === 'auto' && width === 'auto' && isRatioValid) {
+  if (height as string === 'auto' && width as string === 'auto' && isRatioValid) {
     console.warn(`To use the aspect ratio either set the width or the height`);
   }
 
-  if (height !== 'auto' && layout !== 'fixed' && isRatioValid) {
+  if (height as string !== 'auto' && layout !== 'fixed' && isRatioValid) {
     console.warn(`To maintain the aspect ratio we set 'height: "auto"'`);
   }
 
@@ -256,7 +256,7 @@ export const Image = component$<ImageProps>((props) => {
       style={style.value}
       width={width.value}
       height={height.value}
-      srcSet={srcSet.value}
+      srcset={srcSet.value}
       sizes={sizes.value}
     />
   );
