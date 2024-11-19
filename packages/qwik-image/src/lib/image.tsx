@@ -6,6 +6,8 @@ import {
   useComputed$,
   useContext,
   useContextProvider,
+  useSignal,
+  useTask$,
 } from '@builder.io/qwik';
 
 export const DEFAULT_RESOLUTIONS = [3840, 1920, 1280, 960, 640];
@@ -211,6 +213,7 @@ export const getBreakpoints = ({
  * @alpha
  */
 export const Image = component$<ImageProps>((props) => {
+  const srcSetSig = useSignal<string>();
   const state = useContext(ImageContext);
   const { resolutions, imageTransformer$, ...imageAttributes } = {
     ...state,
@@ -226,9 +229,14 @@ export const Image = component$<ImageProps>((props) => {
     ...getStyles(props),
   }));
   const sizes = useComputed$(() => getSizes(props));
-  const srcSet = useComputed$(() => {
-    const { src, width, height, aspectRatio, layout } = props;
-    return getSrcSet({
+  useTask$(async ({ track }) => {
+    const src = track(() => props.src);
+    const width = track(() => props.width);
+    const height = track(() => props.height);
+    const aspectRatio = track(() => props.aspectRatio);
+    const layout = track(() => props.layout);
+
+    srcSetSig.value = await getSrcSet({
       src,
       width,
       height,
@@ -256,7 +264,7 @@ export const Image = component$<ImageProps>((props) => {
       style={style.value}
       width={width.value}
       height={height.value}
-      srcset={srcSet.value}
+      srcset={srcSetSig.value}
       sizes={sizes.value}
     />
   );
