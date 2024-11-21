@@ -3,6 +3,8 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/qwik-demo-app-e2e/src",
   "projectType": "application",
+  "tags": [],
+  "implicitDependencies": ["qwik-demo-app"],
   "targets": {
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
@@ -24,7 +26,5 @@
         "lintFilePatterns": ["packages/qwik-demo-app-e2e/**/*.{js,ts}"]
       }
     }
-  },
-  "tags": [],
-  "implicitDependencies": ["qwik-demo-app"]
+  }
 }

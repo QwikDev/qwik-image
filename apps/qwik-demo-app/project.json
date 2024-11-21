@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "packages/qwik-demo-app/src",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "qwik-nx:build",
@@ -45,7 +46,7 @@
     },
     "test": {
       "executor": "@nrwl/vite:test",
-      "outputs": ["../../coverage/packages/qwik-demo-app"],
+      "outputs": ["../coverage/packages/qwik-demo-app"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/packages/qwik-demo-app"
@@ -72,6 +73,5 @@
         "lintFilePatterns": ["packages/qwik-demo-app/**/*.{ts,tsx,js,jsx}"]
       }
     }
-  },
-  "tags": []
+  }
 }
