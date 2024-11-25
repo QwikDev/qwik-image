@@ -5,6 +5,7 @@
   "scripts": {
     "nx": "nx",
     "build": "nx run qwik-image:build",
+    "build.qwik-ci": "nx run qwik-image:build --skip-nx-cache",
     "test": "echo 'test'"
   },
   "private": false,
