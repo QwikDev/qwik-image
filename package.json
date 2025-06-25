@@ -17,8 +17,8 @@
     "pnpm": ">=9.0.5"
   },
   "devDependencies": {
-    "@builder.io/qwik": "1.10.0",
-    "@builder.io/qwik-city": "1.10.0",
+    "@builder.io/qwik": "1.14.1",
+    "@builder.io/qwik-city": "1.14.1",
     "@commitlint/cli": "17.6.1",
     "@commitlint/config-angular": "17.6.1",
     "@commitlint/config-conventional": "17.6.1",
@@ -37,7 +37,7 @@
     "eslint": "~8.38.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-cypress": "2.13.2",
-    "eslint-plugin-qwik": "1.10.0",
+    "eslint-plugin-qwik": "1.14.1",
     "husky": "8.0.3",
     "jsdom": "~21.1.1",
     "ngx-deploy-npm": "5.2.0",
