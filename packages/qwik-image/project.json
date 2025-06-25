@@ -39,7 +39,7 @@
       "options": {
         "noVerify": true,
         "push": true,
-        "releaseAs": "patch",
+        "releaseAs": "major",
         "postTargets": ["qwik-image:publish", "qwik-image:push-to-github"]
       }
     },
