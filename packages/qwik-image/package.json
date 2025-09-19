@@ -24,7 +24,9 @@
     }
   },
   "dependencies": {},
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@builder.io/qwik": "^1.14.1 || ^2.0.0"
+  },
   "keywords": [
     "qwik-image",
     "image optimization"
