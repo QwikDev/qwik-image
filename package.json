@@ -17,8 +17,8 @@
     "pnpm": ">=9.0.5"
   },
   "devDependencies": {
-    "@builder.io/qwik": "1.14.1",
-    "@builder.io/qwik-city": "1.14.1",
+    "@qwik.dev/core": "2.0.0-beta.9",
+    "@qwik.dev/router": "2.0.0-beta.9",
     "@commitlint/cli": "17.6.1",
     "@commitlint/config-angular": "17.6.1",
     "@commitlint/config-conventional": "17.6.1",

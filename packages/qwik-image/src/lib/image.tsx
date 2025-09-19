@@ -8,7 +8,7 @@ import {
   useContextProvider,
   useSignal,
   useTask$,
-} from '@builder.io/qwik';
+} from '@qwik.dev/core';
 
 export const DEFAULT_RESOLUTIONS = [3840, 1920, 1280, 960, 640];
 

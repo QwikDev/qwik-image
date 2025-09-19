@@ -1,9 +1,9 @@
-import { component$, useStyles$ } from '@builder.io/qwik';
+import { component$, useStyles$ } from '@qwik.dev/core';
 import {
   QwikCityProvider,
   RouterOutlet,
   ServiceWorkerRegister,
-} from '@builder.io/qwik-city';
+} from '@qwik.dev/router';
 import { RouterHead } from './components/router-head/router-head';
 
 import globalStyles from './global.css?inline';

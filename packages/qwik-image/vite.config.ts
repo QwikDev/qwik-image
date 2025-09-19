@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
 
-import { qwikVite } from '@builder.io/qwik/optimizer';
+import { qwikVite } from '@qwik.dev/core/optimizer';
 import { dirname, join } from 'path';
 import { qwikNxVite } from 'qwik-nx/plugins';
 import { fileURLToPath } from 'url';

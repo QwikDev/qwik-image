@@ -1,5 +1,5 @@
-import { QwikCityMockProvider } from '@builder.io/qwik-city';
-import { createDOM } from '@builder.io/qwik/testing';
+import { QwikCityMockProvider } from '@qwik.dev/router';
+import { createDOM } from '@qwik.dev/core/testing';
 import { expect, test } from 'vitest';
 import {
   Image,
@@ -7,7 +7,7 @@ import {
   ImageTransformerProps,
   useImageProvider,
 } from 'qwik-image';
-import { $, Slot, component$, useSignal } from '@builder.io/qwik';
+import { $, Slot, component$, useSignal } from '@qwik.dev/core';
 import { providers, selectedProvider } from '../providers';
 
 const TransformerProvider = component$(() => {
