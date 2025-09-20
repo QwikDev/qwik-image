@@ -8,6 +8,11 @@ import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import pkg from './package.json';
+
+const { dependencies = {}, peerDependencies = {} } = pkg as any;
+const makeRegex = (dep: string) => new RegExp(`^${dep}(/.*)?$`);
+const excludeAll = (obj: string) => Object.keys(obj).map(makeRegex);
 
 export default defineConfig({
   plugins: [
@@ -40,18 +45,23 @@ export default defineConfig({
   build: {
     target: 'es2020',
     lib: {
-      entry: './src/index.ts',
-      // Could also be a dictionary or array of multiple entry points.
-      name: 'qwik-image',
-      fileName: (format) => `index.qwik.${format === 'es' ? 'mjs' : 'cjs'}`,
-      // fileName: 'index',
-      // Change this to the formats you want to support.
-      // Don't forgot to update your package.json as well.
-      formats: ['es', 'cjs'],
+      entry: './src/index',
+      formats: ['es', 'cjs'] as const,
+      // This adds .qwik so all files are processed by the optimizer
+      fileName: (format, entryName) =>
+        `${entryName}.qwik.${format === 'es' ? 'mjs' : 'cjs'}`,
     },
     rollupOptions: {
-      // External packages that should not be bundled into your library.
-      external: [],
+      output: {
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+      },
+      // externalize deps that shouldn't be bundled into the library
+      external: [
+        /^node:.*/,
+        ...excludeAll(dependencies),
+        ...excludeAll(peerDependencies),
+      ],
     },
   },
   test: {
