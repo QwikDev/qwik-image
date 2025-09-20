@@ -34,7 +34,7 @@ export type ImageTransformerProps = {
 /**
  * @alpha
  */
-export interface ImageProps extends ImageAttributes {
+export interface ImageProps extends Omit<ImageAttributes, 'ref'> {
   placeholder?: string;
   style?: Record<string, string | number>;
   aspectRatio?: number;
