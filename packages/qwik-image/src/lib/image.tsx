@@ -1,6 +1,6 @@
 import {
+  PropsOf,
   QRL,
-  QwikIntrinsicElements,
   component$,
   createContextId,
   useComputed$,
@@ -12,7 +12,7 @@ import {
 
 export const DEFAULT_RESOLUTIONS = [3840, 1920, 1280, 960, 640];
 
-type ImageAttributes = QwikIntrinsicElements['img'];
+type ImageAttributes = PropsOf<'img'>;
 
 /**
  * @alpha
