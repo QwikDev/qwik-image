@@ -67,7 +67,7 @@ export const getStyles = ({
   height,
   aspectRatio,
   objectFit = 'cover',
-  layout,
+  layout = 'fixed',
 }: Pick<
   ImageProps,
   'placeholder' | 'width' | 'height' | 'aspectRatio' | 'objectFit' | 'layout'
