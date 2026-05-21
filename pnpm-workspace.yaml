@@ -1,0 +1,8 @@
+packages:
+  - "."
+
+allowBuilds:
+  cypress: false
+  esbuild: false
+  nx: false
+  sharp: false
