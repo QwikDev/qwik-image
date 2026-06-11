@@ -19,6 +19,7 @@
   "devDependencies": {
     "@builder.io/qwik": "1.14.1",
     "@builder.io/qwik-city": "1.14.1",
+    "@changesets/cli": "^2.31.0",
     "@commitlint/cli": "17.6.1",
     "@commitlint/config-angular": "17.6.1",
     "@commitlint/config-conventional": "17.6.1",
