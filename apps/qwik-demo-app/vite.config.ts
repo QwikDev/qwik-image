@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url';
 import { qwikVite } from '@builder.io/qwik/optimizer';
 import { qwikCity } from '@builder.io/qwik-city/vite';
 import { defineConfig } from 'vite';
@@ -36,5 +37,16 @@ export default defineConfig({
     },
     environment: 'node',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    alias: {
+      // qwikVite serves the client variant of this virtual module during
+      // vitest runs, which crashes in the node environment; the dist module
+      // detects browser vs server at runtime instead
+      '@builder.io/qwik/build': fileURLToPath(
+        new URL(
+          '../../node_modules/@builder.io/qwik/dist/build/index.mjs',
+          import.meta.url
+        )
+      ),
+    },
   },
 });

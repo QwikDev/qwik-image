@@ -78,6 +78,21 @@ useImageProvider({
 Here is the loading values and behaviors https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/loading
 default: `lazy`
 
+## priority:
+
+Set `priority` on above-the-fold images (especially the [LCP](https://web.dev/articles/optimize-lcp) image) so they load eagerly with a high fetch priority. It renders `loading="eager"` and `fetchpriority="high"` instead of the default `loading="lazy"`. Use it on at most one or two images per page — never lazy-load the LCP image.
+
+```
+<Image
+  layout="constrained"
+  width="1200"
+  height="600"
+  src={...}
+  alt={...}
+  priority
+/>
+```
+
 ## layout values:
 
 ### `constrained`
