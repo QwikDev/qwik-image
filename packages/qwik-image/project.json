@@ -20,11 +20,11 @@
       }
     },
     "test": {
-      "executor": "@nrwl/vite:test",
-      "outputs": ["../coverage/packages/qwik-image"],
+      "executor": "nx:run-commands",
+      "outputs": [],
       "options": {
-        "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/packages/qwik-image"
+        "cwd": "packages/qwik-image",
+        "command": "vitest run --config vite.config.ts --passWithNoTests"
       }
     },
     "lint": {
