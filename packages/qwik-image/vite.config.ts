@@ -1,11 +1,11 @@
 /// <reference types="vitest" />
 
 import { qwikVite } from '@qwik.dev/core/optimizer';
+import { readFileSync } from 'node:fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import pkg from './package.json';
 
@@ -22,6 +22,7 @@ export default defineConfig({
     qwikVite(),
     tsconfigPaths({ root: workspaceRoot }),
     dts({
+      entryRoot: 'src',
       tsConfigFilePath: join(
         dirname(fileURLToPath(import.meta.url)),
         'tsconfig.lib.json'
@@ -29,9 +30,21 @@ export default defineConfig({
       // Faster builds by skipping tests. Set this to false to enable type checking.
       skipDiagnostics: true,
     }),
-    viteStaticCopy({
-      targets: [{ src: '../../README.md', dest: './' }],
-    }),
+    {
+      name: 'package-files',
+      generateBundle() {
+        this.emitFile({
+          type: 'asset',
+          fileName: 'README.md',
+          source: readFileSync(join(workspaceRoot, 'README.md')),
+        });
+        this.emitFile({
+          type: 'asset',
+          fileName: 'package.json',
+          source: `${JSON.stringify(pkg, null, 2)}\n`,
+        });
+      },
+    },
   ],
   server: {
     fs: {
@@ -43,13 +56,13 @@ export default defineConfig({
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
+    emptyOutDir: true,
     target: 'es2020',
     lib: {
       entry: './src/index',
-      formats: ['es', 'cjs'] as const,
+      formats: ['es'] as const,
       // This adds .qwik so all files are processed by the optimizer
-      fileName: (format, entryName) =>
-        `${entryName}.qwik.${format === 'es' ? 'mjs' : 'cjs'}`,
+      fileName: (_format, entryName) => `${entryName}.qwik.mjs`,
     },
     rollupOptions: {
       output: {
