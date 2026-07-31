@@ -322,6 +322,66 @@ test(`should update img when props change`, async () => {
   });
 });
 
+test(`should lazy load with async decoding by default`, async () => {
+  const { screen, render } = await createDOM();
+  await render(
+    <QwikCityMockProvider>
+      <TransformerProvider>
+        <Image width={400} height={400} layout="constrained" src={SRC} />
+      </TransformerProvider>
+    </QwikCityMockProvider>
+  );
+
+  const img = screen.querySelector('img');
+  expect(img?.getAttribute('loading')).toBe('lazy');
+  expect(img?.getAttribute('decoding')).toBe('async');
+  expect(img?.hasAttribute('fetchpriority')).toBe(false);
+});
+
+test(`should eagerly load with high fetch priority when priority is set`, async () => {
+  const { screen, render } = await createDOM();
+  await render(
+    <QwikCityMockProvider>
+      <TransformerProvider>
+        <Image
+          width={400}
+          height={400}
+          layout="constrained"
+          src={SRC}
+          priority
+        />
+      </TransformerProvider>
+    </QwikCityMockProvider>
+  );
+
+  const img = screen.querySelector('img');
+  expect(img?.getAttribute('loading')).toBe('eager');
+  expect(img?.getAttribute('fetchpriority')).toBe('high');
+  expect(img?.hasAttribute('priority')).toBe(false);
+});
+
+test(`should keep explicitly set loading and fetchpriority`, async () => {
+  const { screen, render } = await createDOM();
+  await render(
+    <QwikCityMockProvider>
+      <TransformerProvider>
+        <Image
+          width={400}
+          height={400}
+          layout="constrained"
+          src={SRC}
+          loading="eager"
+          fetchpriority="low"
+        />
+      </TransformerProvider>
+    </QwikCityMockProvider>
+  );
+
+  const img = screen.querySelector('img');
+  expect(img?.getAttribute('loading')).toBe('eager');
+  expect(img?.getAttribute('fetchpriority')).toBe('low');
+});
+
 function validateImg(
   img: HTMLImageElement | null,
   props: {

@@ -48,6 +48,12 @@ export interface ImageProps extends Omit<ImageAttributes, 'ref'> {
     | 'inherit'
     | 'initial';
   fetchpriority?: 'low' | 'high' | 'auto';
+  /**
+   * Marks the image as high-priority (above-the-fold/LCP image): renders
+   * `loading="eager"` and `fetchpriority="high"` instead of the default
+   * `loading="lazy"`. Explicit `loading`/`fetchpriority` props take precedence.
+   */
+  priority?: boolean;
 }
 
 export const ImageContext = createContextId<ImageState>('ImageContext');
@@ -215,11 +221,13 @@ export const getBreakpoints = ({
 export const Image = component$<ImageProps>((props) => {
   const srcSetSig = useSignal<string>();
   const state = useContext(ImageContext);
-  const { resolutions, imageTransformer$, ...imageAttributes } = {
+  const { resolutions, imageTransformer$, priority, ...imageAttributes } = {
     ...state,
     ...props,
   };
   const imageAttributesWithoutChildren = {
+    loading: priority ? ('eager' as const) : ('lazy' as const),
+    fetchpriority: priority ? ('high' as const) : undefined,
     ...imageAttributes,
     children: undefined,
   };

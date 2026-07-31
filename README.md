@@ -73,10 +73,71 @@ useImageProvider({
 />
 ```
 
+### Picture component (art direction)
+
+Use `Picture` when you need **different image files per viewport** (e.g. a
+full-width desktop banner and a smaller mobile banner from separate CMS fields).
+It renders a native `<picture>` element, so the browser downloads **only** the
+source whose `media` query matches — unlike two CSS-hidden `<Image>` tags, which
+are both fetched when `loading="eager"`/`fetchpriority="high"` are set (hurting
+LCP).
+
+```tsx
+import { Picture } from 'qwik-image';
+
+export default component$((props) => {
+  return (
+    <Picture
+      layout="fullWidth"
+      alt="Banner"
+      loading="eager"
+      fetchpriority="high"
+      src={props.image}                 // fallback / default (desktop)
+      sources={[
+        { src: props.imageMobile, media: '(max-width: 767px)' },
+        { src: props.image,       media: '(min-width: 768px)' },
+      ]}
+    />
+  );
+});
+```
+
+The visual difference between breakpoints comes from serving **different `src`
+files** — the desktop and mobile images your CMS already provides. Exactly one of
+them is downloaded, and `loading`/`fetchpriority` (set on the fallback `<img>`)
+apply to whichever source the browser selects, so the LCP request is single and
+correctly prioritized.
+
+`Picture` accepts every `Image` prop (`layout`, `objectFit`, `alt`, `loading`,
+`fetchpriority`, `class`, `placeholder`, …) and forwards them to the fallback
+`<img>`. Each entry in `sources` is:
+
+| field | required | description |
+| --- | --- | --- |
+| `src` | yes | Image URL for this source (run through your `imageTransformer$`). |
+| `media` | yes | Media query, e.g. `(min-width: 768px)`. |
+| `type` | no | MIME type, e.g. `image/webp`. |
+| `width` / `height` / `aspectRatio` | no | Per-source overrides for that source's generated `srcset`, following the same rules as `Image` (e.g. `aspectRatio` affects the generated heights only when `height` is also set). Fall back to the `Picture`-level values. |
+
 ## loading values:
 
 Here is the loading values and behaviors https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/loading
 default: `lazy`
+
+## priority:
+
+Set `priority` on above-the-fold images (especially the [LCP](https://web.dev/articles/optimize-lcp) image) so they load eagerly with a high fetch priority. It renders `loading="eager"` and `fetchpriority="high"` instead of the default `loading="lazy"`. Use it on at most one or two images per page — never lazy-load the LCP image.
+
+```
+<Image
+  layout="constrained"
+  width="1200"
+  height="600"
+  src={...}
+  alt={...}
+  priority
+/>
+```
 
 ## layout values:
 

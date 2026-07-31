@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url';
 import { qwikVite } from '@qwik.dev/core/optimizer';
 import { qwikCity } from '@qwik.dev/router/vite';
 import { defineConfig } from 'vite';
@@ -36,5 +37,13 @@ export default defineConfig({
     },
     environment: 'node',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    alias: {
+      '@qwik.dev/core/build': fileURLToPath(
+        new URL(
+          '../../node_modules/@qwik.dev/core/dist/build/index.mjs',
+          import.meta.url
+        )
+      ),
+    },
   },
 });

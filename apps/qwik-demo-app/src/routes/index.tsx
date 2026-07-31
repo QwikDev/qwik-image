@@ -19,6 +19,7 @@ export default component$(() => {
         placeholder="#e6e6e6"
         layout="constrained"
         src={providers[selectedProvider].src}
+        priority
       />
     </>
   );
