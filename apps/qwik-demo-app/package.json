@@ -1,3 +1,4 @@
 {
-  "name": "qwik-demo-app"
+  "name": "qwik-demo-app",
+  "type": "module"
 }

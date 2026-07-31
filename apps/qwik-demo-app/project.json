@@ -2,7 +2,7 @@
   "name": "qwik-demo-app",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "packages/qwik-demo-app/src",
+  "sourceRoot": "apps/qwik-demo-app/src",
   "tags": [],
   "targets": {
     "build": {
@@ -19,41 +19,44 @@
       }
     },
     "build.client": {
-      "executor": "@nrwl/vite:build",
+      "executor": "@nx/vite:build",
       "options": {
-        "outputPath": "dist/packages/qwik-demo-app",
-        "configFile": "packages/qwik-demo-app/vite.config.ts"
+        "outputPath": "dist/packages/qwik-demo-app/client",
+        "configFile": "apps/qwik-demo-app/vite.config.ts",
+        "emptyOutDir": true
       }
     },
     "build.ssr": {
-      "executor": "@nrwl/vite:build",
+      "executor": "@nx/vite:build",
       "defaultConfiguration": "preview",
       "options": {
-        "outputPath": "dist/packages/qwik-demo-app"
+        "outputPath": "dist/packages/qwik-demo-app/server",
+        "configFile": "apps/qwik-demo-app/vite.config.ts",
+        "emptyOutDir": true
       },
       "configurations": {
         "preview": {
-          "ssr": "src/entry.preview.tsx",
+          "ssr": "apps/qwik-demo-app/src/entry.preview.tsx",
           "mode": "production"
         }
       }
     },
     "preview": {
-      "executor": "@nrwl/vite:preview-server",
+      "executor": "@nx/vite:preview-server",
       "options": {
         "buildTarget": "qwik-demo-app:build"
       }
     },
     "test": {
-      "executor": "@nrwl/vite:test",
-      "outputs": ["../coverage/packages/qwik-demo-app"],
+      "executor": "nx:run-commands",
+      "outputs": [],
       "options": {
-        "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/packages/qwik-demo-app"
+        "cwd": "apps/qwik-demo-app",
+        "command": "vitest run --config vite.config.ts --passWithNoTests"
       }
     },
     "serve": {
-      "executor": "@nrwl/vite:dev-server",
+      "executor": "@nx/vite:dev-server",
       "options": {
         "buildTarget": "qwik-demo-app:build.client",
         "mode": "ssr"
@@ -63,14 +66,14 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "node --inspect-brk ../../node_modules/vite/bin/vite.js --mode ssr --force",
-        "cwd": "packages/qwik-demo-app"
+        "cwd": "apps/qwik-demo-app"
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["packages/qwik-demo-app/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/qwik-demo-app/**/*.{ts,tsx,js,jsx}"]
       }
     }
   }

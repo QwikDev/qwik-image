@@ -2,7 +2,6 @@
 
 import { qwikVite } from '@qwik.dev/core/optimizer';
 import { dirname, join } from 'path';
-import { qwikNxVite } from 'qwik-nx/plugins';
 import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
@@ -13,12 +12,15 @@ import pkg from './package.json';
 const { dependencies = {}, peerDependencies = {} } = pkg as any;
 const makeRegex = (dep: string) => new RegExp(`^${dep}(/.*)?$`);
 const excludeAll = (obj: string) => Object.keys(obj).map(makeRegex);
+const projectRoot = dirname(fileURLToPath(import.meta.url));
+const workspaceRoot = join(projectRoot, '../..');
 
 export default defineConfig({
+  root: projectRoot,
+  cacheDir: join(workspaceRoot, 'node_modules/.vitest'),
   plugins: [
-    qwikNxVite(),
     qwikVite(),
-    tsconfigPaths({ root: '../../' }),
+    tsconfigPaths({ root: workspaceRoot }),
     dts({
       tsConfigFilePath: join(
         dirname(fileURLToPath(import.meta.url)),
@@ -34,7 +36,7 @@ export default defineConfig({
   server: {
     fs: {
       // Allow serving files from the project root
-      allow: ['../../'],
+      allow: [workspaceRoot],
     },
   },
 
@@ -64,9 +66,6 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    cache: {
-      dir: '../../node_modules/.vitest',
-    },
     environment: 'node',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     alias: {
