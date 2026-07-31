@@ -23,9 +23,7 @@ export default defineConfig({
       skipDiagnostics: true,
     }),
     viteStaticCopy({
-      targets: [
-        { src: '../../README.md', dest: './' },
-      ],
+      targets: [{ src: '../../README.md', dest: './' }],
     }),
   ],
   server: {
@@ -61,6 +59,14 @@ export default defineConfig({
     },
     environment: 'node',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    alias: {
+      '@builder.io/qwik/build': fileURLToPath(
+        new URL(
+          '../../node_modules/@builder.io/qwik/dist/build/index.mjs',
+          import.meta.url
+        )
+      ),
+    },
     coverage: {
       reportsDirectory: '../../coverage/packages/qwik-image',
     },

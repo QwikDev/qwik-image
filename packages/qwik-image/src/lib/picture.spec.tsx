@@ -18,7 +18,11 @@ describe('Picture', () => {
     const { screen, render } = await createDOM();
     await render(
       <ImageProviderWrapper>
-        <Picture layout="fullWidth" alt="Banner" src="https://example.com/desktop.jpg" />
+        <Picture
+          layout="fullWidth"
+          alt="Banner"
+          src="https://example.com/desktop.jpg"
+        />
       </ImageProviderWrapper>
     );
 
@@ -40,8 +44,15 @@ describe('Picture', () => {
           alt="Banner"
           src="https://example.com/desktop.jpg"
           sources={[
-            { src: 'https://example.com/mobile.jpg', media: '(max-width: 767px)', type: 'image/webp' },
-            { src: 'https://example.com/desktop.jpg', media: '(min-width: 768px)' },
+            {
+              src: 'https://example.com/mobile.jpg',
+              media: '(max-width: 767px)',
+              type: 'image/webp',
+            },
+            {
+              src: 'https://example.com/desktop.jpg',
+              media: '(min-width: 768px)',
+            },
           ]}
         />
       </ImageProviderWrapper>
@@ -54,6 +65,36 @@ describe('Picture', () => {
     expect(sources[1].getAttribute('media')).toBe('(min-width: 768px)');
   });
 
+  it('renders same-media sources with different formats', async () => {
+    const { screen, render } = await createDOM();
+    await render(
+      <ImageProviderWrapper>
+        <Picture
+          layout="fullWidth"
+          alt="Banner"
+          src="https://example.com/desktop.jpg"
+          sources={[
+            {
+              src: 'https://example.com/banner.avif',
+              media: '(min-width: 768px)',
+              type: 'image/avif',
+            },
+            {
+              src: 'https://example.com/banner.webp',
+              media: '(min-width: 768px)',
+              type: 'image/webp',
+            },
+          ]}
+        />
+      </ImageProviderWrapper>
+    );
+
+    const sources = screen.querySelectorAll('source');
+    expect(sources.length).toBe(2);
+    expect(sources[0].getAttribute('type')).toBe('image/avif');
+    expect(sources[1].getAttribute('type')).toBe('image/webp');
+  });
+
   it('puts loading and fetchpriority on the fallback <img>, and it is the last child', async () => {
     const { screen, render } = await createDOM();
     await render(
@@ -64,7 +105,12 @@ describe('Picture', () => {
           loading="eager"
           fetchpriority="high"
           src="https://example.com/desktop.jpg"
-          sources={[{ src: 'https://example.com/mobile.jpg', media: '(max-width: 767px)' }]}
+          sources={[
+            {
+              src: 'https://example.com/mobile.jpg',
+              media: '(max-width: 767px)',
+            },
+          ]}
         />
       </ImageProviderWrapper>
     );
@@ -74,6 +120,24 @@ describe('Picture', () => {
     expect(img?.getAttribute('loading')).toBe('eager');
     expect(img?.getAttribute('fetchpriority')).toBe('high');
     expect(picture.lastElementChild?.tagName.toLowerCase()).toBe('img');
+  });
+
+  it('forwards priority to the fallback <img>', async () => {
+    const { screen, render } = await createDOM();
+    await render(
+      <ImageProviderWrapper>
+        <Picture
+          layout="fullWidth"
+          alt="Banner"
+          priority
+          src="https://example.com/desktop.jpg"
+        />
+      </ImageProviderWrapper>
+    );
+
+    const img = screen.querySelector('picture img');
+    expect(img?.getAttribute('loading')).toBe('eager');
+    expect(img?.getAttribute('fetchpriority')).toBe('high');
   });
 
   it('passes each source src through the context imageTransformer$', async () => {
@@ -97,8 +161,14 @@ describe('Picture', () => {
     await render(
       <Host
         sources={[
-          { src: 'https://example.com/mobile.jpg', media: '(max-width: 767px)' },
-          { src: 'https://example.com/desktop.jpg', media: '(min-width: 768px)' },
+          {
+            src: 'https://example.com/mobile.jpg',
+            media: '(max-width: 767px)',
+          },
+          {
+            src: 'https://example.com/desktop.jpg',
+            media: '(min-width: 768px)',
+          },
         ]}
       />
     );
@@ -130,7 +200,11 @@ describe('Picture', () => {
     await render(
       <Host
         sources={[
-          { src: 'https://example.com/mobile.jpg', media: '(max-width: 767px)', width: 400 },
+          {
+            src: 'https://example.com/mobile.jpg',
+            media: '(max-width: 767px)',
+            width: 400,
+          },
         ]}
       />
     );

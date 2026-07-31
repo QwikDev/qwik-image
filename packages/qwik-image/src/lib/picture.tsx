@@ -1,9 +1,4 @@
-import {
-  component$,
-  useContext,
-  useSignal,
-  useTask$,
-} from '@builder.io/qwik';
+import { component$, useContext, useSignal, useTask$ } from '@builder.io/qwik';
 import {
   getSizes,
   getSrcSet,
@@ -32,6 +27,7 @@ export interface PictureProps extends ImageProps {
 }
 
 type ComputedPictureSource = {
+  key: string;
   media: string;
   type?: string;
   srcset: string;
@@ -70,7 +66,8 @@ export const Picture = component$<PictureProps>((props) => {
         // and `getSizes` interpolates the value directly into the template
         // string, so this cast is behavior-preserving for both.
         const effectiveWidth = (source.width ?? width) as ImageProps['width'];
-        const effectiveHeight = (source.height ?? height) as ImageProps['height'];
+        const effectiveHeight = (source.height ??
+          height) as ImageProps['height'];
         const effectiveAspectRatio = source.aspectRatio ?? aspectRatio;
 
         const srcset = await getSrcSet({
@@ -84,6 +81,7 @@ export const Picture = component$<PictureProps>((props) => {
         });
 
         return {
+          key: `${source.media}:${source.type ?? ''}:${source.src}`,
           media: source.media,
           type: source.type,
           srcset,
@@ -97,7 +95,7 @@ export const Picture = component$<PictureProps>((props) => {
     <picture>
       {computedSourcesSig.value.map((source) => (
         <source
-          key={source.media}
+          key={source.key}
           media={source.media}
           type={source.type}
           srcset={source.srcset}
