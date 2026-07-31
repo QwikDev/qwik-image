@@ -17,8 +17,6 @@
     "pnpm": ">=11.1.3"
   },
   "devDependencies": {
-    "@qwik.dev/core": "2.0.0-beta.38",
-    "@qwik.dev/router": "2.0.0-beta.38",
     "@changesets/cli": "^2.31.0",
     "@commitlint/cli": "17.6.1",
     "@commitlint/config-angular": "17.6.1",
@@ -31,6 +29,8 @@
     "@nx/js": "21.6.11",
     "@nx/vite": "21.6.11",
     "@nx/workspace": "21.6.11",
+    "@qwik.dev/core": "2.0.0-beta.38",
+    "@qwik.dev/router": "2.0.0-beta.38",
     "@types/node": "20.19.43",
     "@typescript-eslint/eslint-plugin": "7.7.1",
     "@typescript-eslint/parser": "7.7.1",
@@ -54,7 +54,6 @@
     "vite": "7.3.6",
     "vite-plugin-dts": "~2.3.0",
     "vite-plugin-eslint": "1.8.1",
-    "vite-plugin-static-copy": "4.1.1",
     "vite-tsconfig-paths": "~4.2.0",
     "vitest": "3.2.7"
   },
