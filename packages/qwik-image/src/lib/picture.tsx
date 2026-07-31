@@ -40,13 +40,14 @@ type ComputedPictureSource = {
 export const Picture = component$<PictureProps>((props) => {
   const computedSourcesSig = useSignal<ComputedPictureSource[]>([]);
   const state = useContext(ImageContext);
-  const { sources, resolutions, imageTransformer$, ...imageAttributes } = {
+  const { resolutions, imageTransformer$, ...imageAttributes } = {
     ...state,
     ...props,
   };
   const imageAttributesWithoutChildren = {
     ...imageAttributes,
     children: undefined,
+    sources: undefined,
   };
 
   useTask$(async ({ track }) => {
@@ -56,6 +57,8 @@ export const Picture = component$<PictureProps>((props) => {
     const aspectRatio = track(() => props.aspectRatio);
     const layout = track(() => props.layout);
 
+    // Qwik 2 signals are serializable; eslint-plugin-qwik inspects the internal trigger.
+    // eslint-disable-next-line qwik/valid-lexical-scope
     computedSourcesSig.value = await Promise.all(
       sources.map(async (source) => {
         // `PictureSource.width`/`height` accept any `string` (per-source

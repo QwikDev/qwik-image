@@ -1,0 +1,26 @@
+.examples {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.examples article {
+  min-width: 0;
+}
+
+.examples h2 {
+  margin-bottom: 10px;
+}
+
+.examples picture,
+.examples img {
+  display: block;
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .examples {
+    grid-template-columns: 1fr;
+  }
+}

@@ -7,7 +7,7 @@ import {
   ImageTransformerProps,
   useImageProvider,
 } from 'qwik-image';
-import { $, Slot, component$, useSignal } from '@qwik.dev/core';
+import { $, Slot, component$, useStore } from '@qwik.dev/core';
 import { providers, selectedProvider } from '../providers';
 
 const TransformerProvider = component$(() => {
@@ -212,25 +212,19 @@ test(`should render a fixed img`, async () => {
 
 const DynamicImage = component$(
   (props: { before: ImageProps; after: ImageProps }) => {
-    const width = useSignal(props.before.width);
-    const height = useSignal(props.before.height);
-    const layout = useSignal(props.before.layout);
-    const src = useSignal(props.before.src);
+    const state = useStore({ ...props.before });
 
     return (
       <>
         <Image
-          width={width.value}
-          height={height.value}
-          layout={layout.value}
-          src={src.value}
+          width={state.width}
+          height={state.height}
+          layout={state.layout}
+          src={state.src}
         />
         <button
           onClick$={() => {
-            width.value = props.after.width;
-            height.value = props.after.height;
-            layout.value = props.after.layout;
-            src.value = props.after.src;
+            Object.assign(state, props.after);
           }}
         ></button>
       </>

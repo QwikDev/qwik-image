@@ -3,11 +3,14 @@ import { qwikVite } from '@qwik.dev/core/optimizer';
 import { qwikCity } from '@qwik.dev/router/vite';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { qwikNxVite } from 'qwik-nx/plugins';
+
+const projectRoot = fileURLToPath(new URL('.', import.meta.url));
+const workspaceRoot = fileURLToPath(new URL('../..', import.meta.url));
 
 export default defineConfig({
+  root: projectRoot,
+  cacheDir: `${workspaceRoot}/node_modules/.vitest`,
   plugins: [
-    qwikNxVite(),
     qwikCity(),
     qwikVite({
       client: {
@@ -17,12 +20,12 @@ export default defineConfig({
         outDir: '../../dist/packages/qwik-demo-app/server',
       },
     }),
-    tsconfigPaths({ root: '../../' }),
+    tsconfigPaths({ root: workspaceRoot }),
   ],
   server: {
     fs: {
       // Allow serving files from the project root
-      allow: ['../../'],
+      allow: [workspaceRoot],
     },
   },
   preview: {
@@ -32,9 +35,6 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    cache: {
-      dir: '../../node_modules/.vitest',
-    },
     environment: 'node',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     alias: {
