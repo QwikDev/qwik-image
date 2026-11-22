@@ -108,6 +108,16 @@ test(`should render a fullWidth img`, async () => {
     srcSizes: [
       {
         height: 400,
+        width: 640,
+        breakpoint: 640,
+      },
+      {
+        height: 400,
+        width: 960,
+        breakpoint: 960,
+      },
+      {
+        height: 400,
         width: 1280,
         breakpoint: 1280,
       },
@@ -120,16 +130,6 @@ test(`should render a fullWidth img`, async () => {
         height: 400,
         width: 3840,
         breakpoint: 3840,
-      },
-      {
-        height: 400,
-        width: 640,
-        breakpoint: 640,
-      },
-      {
-        height: 400,
-        width: 960,
-        breakpoint: 960,
       },
     ],
   });
@@ -153,6 +153,16 @@ test(`should render a fullWidth rectangular img`, async () => {
     srcSizes: [
       {
         height: 200,
+        width: 640,
+        breakpoint: 640,
+      },
+      {
+        height: 200,
+        width: 960,
+        breakpoint: 960,
+      },
+      {
+        height: 200,
         width: 1280,
         breakpoint: 1280,
       },
@@ -165,16 +175,6 @@ test(`should render a fullWidth rectangular img`, async () => {
         height: 200,
         width: 3840,
         breakpoint: 3840,
-      },
-      {
-        height: 200,
-        width: 640,
-        breakpoint: 640,
-      },
-      {
-        height: 200,
-        width: 960,
-        breakpoint: 960,
       },
     ],
   });
@@ -198,13 +198,13 @@ test(`should render a fixed img`, async () => {
     srcSizes: [
       {
         height: 500,
-        width: 1200,
-        breakpoint: 1200,
+        width: 600,
+        breakpoint: 600,
       },
       {
         height: 500,
-        width: 600,
-        breakpoint: 600,
+        width: 1200,
+        breakpoint: 1200,
       },
     ],
   });
@@ -289,6 +289,16 @@ test(`should update img when props change`, async () => {
     srcSizes: [
       {
         height: 200,
+        width: 640,
+        breakpoint: 640,
+      },
+      {
+        height: 200,
+        width: 960,
+        breakpoint: 960,
+      },
+      {
+        height: 200,
         width: 1280,
         breakpoint: 1280,
       },
@@ -301,16 +311,6 @@ test(`should update img when props change`, async () => {
         height: 200,
         width: 3840,
         breakpoint: 3840,
-      },
-      {
-        height: 200,
-        width: 640,
-        breakpoint: 640,
-      },
-      {
-        height: 200,
-        width: 960,
-        breakpoint: 960,
       },
     ],
   });
@@ -374,6 +374,51 @@ test(`should keep explicitly set loading and fetchpriority`, async () => {
   const img = screen.querySelector('img');
   expect(img?.getAttribute('loading')).toBe('eager');
   expect(img?.getAttribute('fetchpriority')).toBe('low');
+});
+
+test(`should keep explicitly set sizes`, async () => {
+  const { screen, render } = await createDOM();
+  await render(
+    <QwikCityMockProvider>
+      <TransformerProvider>
+        <Image
+          width={400}
+          height={400}
+          layout="constrained"
+          src={SRC}
+          sizes="50vw"
+        />
+      </TransformerProvider>
+    </QwikCityMockProvider>
+  );
+
+  expect(screen.querySelector('img')?.getAttribute('sizes')).toBe('50vw');
+});
+
+test(`should not render component-only props as attributes`, async () => {
+  const { screen, render } = await createDOM();
+  await render(
+    <QwikCityMockProvider>
+      <TransformerProvider>
+        <Image
+          width={400}
+          height={400}
+          layout="constrained"
+          objectFit="contain"
+          aspectRatio={2}
+          placeholder="#e6e6e6"
+          src={SRC}
+        />
+      </TransformerProvider>
+    </QwikCityMockProvider>
+  );
+
+  const img = screen.querySelector('img');
+  for (const name of ['layout', 'objectfit', 'aspectratio', 'placeholder']) {
+    expect(img?.hasAttribute(name)).toBe(false);
+  }
+  expect(img?.getAttribute('style')).toContain('object-fit:contain');
+  expect(img?.getAttribute('style')).toContain('background:#e6e6e6');
 });
 
 function validateImg(
