@@ -1,3 +1,5 @@
+/// <reference types="vitest/config" />
+
 import { fileURLToPath } from 'node:url';
 import { qwikVite } from '@qwik.dev/core/optimizer';
 import { qwikCity } from '@qwik.dev/router/vite';

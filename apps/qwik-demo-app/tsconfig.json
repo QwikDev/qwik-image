@@ -9,7 +9,7 @@
     "jsxImportSource": "@qwik.dev/core",
     "strict": true,
     "resolveJsonModule": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "incremental": true,

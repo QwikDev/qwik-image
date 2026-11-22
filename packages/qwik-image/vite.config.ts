@@ -1,4 +1,4 @@
-/// <reference types="vitest" />
+/// <reference types="vitest/config" />
 
 import { qwikVite } from '@qwik.dev/core/optimizer';
 import { readFileSync } from 'node:fs';
@@ -23,12 +23,9 @@ export default defineConfig({
     tsconfigPaths({ root: workspaceRoot }),
     dts({
       entryRoot: 'src',
-      tsConfigFilePath: join(
-        dirname(fileURLToPath(import.meta.url)),
-        'tsconfig.lib.json'
-      ),
-      // Faster builds by skipping tests. Set this to false to enable type checking.
-      skipDiagnostics: true,
+      tsconfigPath: join(projectRoot, 'tsconfig.lib.json'),
+      include: ['src'],
+      exclude: ['src/**/*.spec.*'],
     }),
     {
       name: 'package-files',

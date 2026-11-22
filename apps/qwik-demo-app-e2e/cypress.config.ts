@@ -1,5 +1,5 @@
 import { defineConfig } from 'cypress';
-import { nxE2EPreset } from '@nx/cypress/plugins/cypress-preset.js';
+import { nxE2EPreset } from '@nx/cypress/plugins/cypress-preset';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
