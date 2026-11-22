@@ -1,4 +1,4 @@
-import { $, component$, Slot } from '@builder.io/qwik';
+import { $, component$, Slot } from '@qwik.dev/core';
 import { providers, selectedProvider } from '../providers';
 
 import Header from '../components/header/header';

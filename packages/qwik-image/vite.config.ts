@@ -1,68 +1,87 @@
-/// <reference types="vitest" />
+/// <reference types="vitest/config" />
 
-import { qwikVite } from '@builder.io/qwik/optimizer';
+import { qwikVite } from '@qwik.dev/core/optimizer';
+import { readFileSync } from 'node:fs';
 import { dirname, join } from 'path';
-import { qwikNxVite } from 'qwik-nx/plugins';
 import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import pkg from './package.json';
+
+const { dependencies = {}, peerDependencies = {} } = pkg as any;
+const makeRegex = (dep: string) => new RegExp(`^${dep}(/.*)?$`);
+const excludeAll = (obj: string) => Object.keys(obj).map(makeRegex);
+const projectRoot = dirname(fileURLToPath(import.meta.url));
+const workspaceRoot = join(projectRoot, '../..');
 
 export default defineConfig({
+  root: projectRoot,
+  cacheDir: join(workspaceRoot, 'node_modules/.vitest'),
   plugins: [
-    qwikNxVite(),
     qwikVite(),
-    tsconfigPaths({ root: '../../' }),
+    tsconfigPaths({ root: workspaceRoot }),
     dts({
-      tsConfigFilePath: join(
-        dirname(fileURLToPath(import.meta.url)),
-        'tsconfig.lib.json'
-      ),
-      // Faster builds by skipping tests. Set this to false to enable type checking.
-      skipDiagnostics: true,
+      entryRoot: 'src',
+      tsconfigPath: join(projectRoot, 'tsconfig.lib.json'),
+      include: ['src'],
+      exclude: ['src/**/*.spec.*'],
     }),
-    viteStaticCopy({
-      targets: [{ src: '../../README.md', dest: './' }],
-    }),
+    {
+      name: 'package-files',
+      generateBundle() {
+        this.emitFile({
+          type: 'asset',
+          fileName: 'README.md',
+          source: readFileSync(join(workspaceRoot, 'README.md')),
+        });
+        this.emitFile({
+          type: 'asset',
+          fileName: 'package.json',
+          source: `${JSON.stringify(pkg, null, 2)}\n`,
+        });
+      },
+    },
   ],
   server: {
     fs: {
       // Allow serving files from the project root
-      allow: ['../../'],
+      allow: [workspaceRoot],
     },
   },
 
   // Configuration for building your library.
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
+    emptyOutDir: true,
     target: 'es2020',
     lib: {
-      entry: './src/index.ts',
-      // Could also be a dictionary or array of multiple entry points.
-      name: 'qwik-image',
-      fileName: (format) => `index.qwik.${format === 'es' ? 'mjs' : 'cjs'}`,
-      // fileName: 'index',
-      // Change this to the formats you want to support.
-      // Don't forgot to update your package.json as well.
-      formats: ['es', 'cjs'],
+      entry: './src/index',
+      formats: ['es'] as const,
+      // This adds .qwik so all files are processed by the optimizer
+      fileName: (_format, entryName) => `${entryName}.qwik.mjs`,
     },
     rollupOptions: {
-      // External packages that should not be bundled into your library.
-      external: [],
+      output: {
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+      },
+      // externalize deps that shouldn't be bundled into the library
+      external: [
+        /^node:.*/,
+        ...excludeAll(dependencies),
+        ...excludeAll(peerDependencies),
+      ],
     },
   },
   test: {
     globals: true,
-    cache: {
-      dir: '../../node_modules/.vitest',
-    },
     environment: 'node',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     alias: {
-      '@builder.io/qwik/build': fileURLToPath(
+      '@qwik.dev/core/build': fileURLToPath(
         new URL(
-          '../../node_modules/@builder.io/qwik/dist/build/index.mjs',
+          '../../node_modules/@qwik.dev/core/dist/build/index.mjs',
           import.meta.url
         )
       ),

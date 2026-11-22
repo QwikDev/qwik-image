@@ -1,5 +1,5 @@
-import { $, Slot, component$ } from '@builder.io/qwik';
-import { createDOM } from '@builder.io/qwik/testing';
+import { $, Slot, component$ } from '@qwik.dev/core';
+import { createDOM } from '@qwik.dev/core/testing';
 import { describe, expect, it } from 'vitest';
 import { useImageProvider, type ImageTransformerProps } from './image';
 import { Picture, type PictureSource } from './picture';

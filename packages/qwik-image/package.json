@@ -1,12 +1,12 @@
 {
   "name": "qwik-image",
-  "version": "1.0.0",
+  "version": "2.0.4",
   "description": "The goal is a component to support performant images on the web and automatic image optimization. That will be built as a pluggable component so devs could connect different image loaders to it (like Cloudinary, or builder)",
-  "main": "./index.qwik.cjs",
   "qwik": "./index.qwik.mjs",
   "module": "./index.qwik.mjs",
   "types": "./index.d.ts",
   "type": "module",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/qwikdev/qwik-image"
@@ -19,13 +19,12 @@
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "import": "./index.qwik.mjs",
-      "require": "./index.qwik.cjs"
+      "import": "./index.qwik.mjs"
     }
   },
   "dependencies": {},
   "peerDependencies": {
-    "@builder.io/qwik": "^1.14.1 || ^2.0.0"
+    "@qwik.dev/core": "^2.0.0-beta.38"
   },
   "keywords": [
     "qwik-image",

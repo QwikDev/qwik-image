@@ -1,13 +1,24 @@
-import { getGreeting } from '../support/app.po';
-
 describe('qwik-demo-app', () => {
   beforeEach(() => cy.visit('/'));
 
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
+  it('renders the Image and Picture examples', () => {
+    cy.get('article').eq(0).within(() => {
+      cy.contains('h2', 'Image');
+      cy.get('img[alt="Qwik Image example"]')
+        .should('be.visible')
+        .and(($image) => {
+          expect(($image[0] as HTMLImageElement).naturalWidth).to.be.greaterThan(0);
+        });
+    });
 
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome qwik-demo-app');
+    cy.get('article').eq(1).within(() => {
+      cy.contains('h2', 'Picture');
+      cy.get('picture source').should('have.length', 2);
+      cy.get('img[alt="Qwik Picture example"]')
+        .should('be.visible')
+        .and(($image) => {
+          expect(($image[0] as HTMLImageElement).naturalWidth).to.be.greaterThan(0);
+        });
+    });
   });
 });

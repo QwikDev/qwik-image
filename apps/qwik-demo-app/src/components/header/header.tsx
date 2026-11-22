@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$ } from '@builder.io/qwik';
+import { component$, useStylesScoped$ } from '@qwik.dev/core';
 import { QwikLogo } from '../icons/qwik';
 import styles from './header.css?inline';
 

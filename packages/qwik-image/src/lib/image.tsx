@@ -1,18 +1,15 @@
 import {
+  PropsOf,
   QRL,
-  QwikIntrinsicElements,
   component$,
   createContextId,
-  useComputed$,
   useContext,
   useContextProvider,
-  useSignal,
-  useTask$,
-} from '@builder.io/qwik';
+} from '@qwik.dev/core';
 
 export const DEFAULT_RESOLUTIONS = [3840, 1920, 1280, 960, 640];
 
-type ImageAttributes = QwikIntrinsicElements['img'];
+type ImageAttributes = PropsOf<'img'>;
 
 /**
  * @alpha
@@ -34,7 +31,7 @@ export type ImageTransformerProps = {
 /**
  * @alpha
  */
-export interface ImageProps extends ImageAttributes {
+export interface ImageProps extends Omit<ImageAttributes, 'ref'> {
   placeholder?: string;
   style?: Record<string, string | number>;
   aspectRatio?: number;
@@ -164,7 +161,7 @@ export const getSrcSet = async ({
   });
 
   const srcSets = [];
-  for await (const breakpoint of breakpoints.sort()) {
+  for await (const breakpoint of breakpoints.sort((a, b) => a - b)) {
     let transformedHeight =
       typeof height === 'string' ? parseInt(height, 10) : height;
     if (height && aspectRatio) {
@@ -219,7 +216,6 @@ export const getBreakpoints = ({
  * @alpha
  */
 export const Image = component$<ImageProps>((props) => {
-  const srcSetSig = useSignal<string>();
   const state = useContext(ImageContext);
   const { resolutions, imageTransformer$, priority, ...imageAttributes } = {
     ...state,
@@ -230,50 +226,30 @@ export const Image = component$<ImageProps>((props) => {
     fetchpriority: priority ? ('high' as const) : undefined,
     ...imageAttributes,
     children: undefined,
+    // not <img> attributes
+    layout: undefined,
+    objectFit: undefined,
+    aspectRatio: undefined,
+    placeholder: undefined,
   };
 
-  const style = useComputed$(() => ({
-    ...props.style,
-    ...getStyles(props),
-  }));
-  const sizes = useComputed$(() => getSizes(props));
-  useTask$(async ({ track }) => {
-    const src = track(() => props.src);
-    const width = track(() => props.width);
-    const height = track(() => props.height);
-    const aspectRatio = track(() => props.aspectRatio);
-    const layout = track(() => props.layout);
-
-    srcSetSig.value = await getSrcSet({
-      src,
-      width,
-      height,
-      aspectRatio,
-      layout,
-      resolutions,
-      imageTransformer$,
-    });
-  });
-  const width = useComputed$(() =>
-    ['fullWidth', 'constrained'].includes(props.layout)
-      ? undefined
-      : props.width
-  );
-  const height = useComputed$(() =>
-    ['fullWidth', 'constrained'].includes(props.layout)
-      ? undefined
-      : props.height
-  );
+  const fluid = ['fullWidth', 'constrained'].includes(props.layout);
 
   return (
-    <img
-      decoding="async"
-      {...imageAttributesWithoutChildren}
-      style={style.value}
-      width={width.value}
-      height={height.value}
-      srcset={srcSetSig.value}
-      sizes={sizes.value}
-    />
+    <>
+      {getSrcSet({ ...props, resolutions, imageTransformer$ }).then(
+        (srcset) => (
+          <img
+            decoding="async"
+            {...imageAttributesWithoutChildren}
+            style={{ ...props.style, ...getStyles(props) }}
+            width={fluid ? undefined : props.width}
+            height={fluid ? undefined : props.height}
+            srcset={srcset}
+            sizes={props.sizes ?? getSizes(props)}
+          />
+        )
+      )}
+    </>
   );
 });
