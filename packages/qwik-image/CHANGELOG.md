@@ -2,6 +2,18 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## 2.0.5
+
+### Patch Changes
+
+- e09fd3b: `Image` and `Picture` no longer serialize per-instance resumable state: attributes and `srcset` are computed during render instead of through tasks, signals and computeds (#21).
+
+  Also:
+
+  - an explicit `sizes` prop is now respected instead of being replaced by the computed one;
+  - `layout`, `objectFit`, `aspectRatio` and `placeholder` are no longer rendered as `<img>` attributes;
+  - `srcset` entries are sorted by width numerically.
+
 ## [0.0.16](https://github.com/QwikDev/qwik-image/compare/qwik-image-0.0.15...qwik-image-0.0.16) (2024-11-19)
 
 
